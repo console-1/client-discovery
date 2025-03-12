@@ -6,12 +6,14 @@ interface ProgressIndicatorProps {
   totalSteps: number;
   currentStep: number;
   className?: string;
+  onStepClick?: (stepIndex: number) => void;
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   totalSteps,
   currentStep,
-  className
+  className,
+  onStepClick
 }) => {
   const progressRef = useRef<HTMLDivElement>(null);
 
@@ -37,8 +39,13 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
             key={index}
             className={cn(
               'relative flex flex-col items-center',
-              index < currentStep ? 'text-mint' : 'text-stone-400'
+              index < currentStep ? 'text-mint' : 'text-stone-400',
+              onStepClick ? 'cursor-pointer' : ''
             )}
+            onClick={() => onStepClick && onStepClick(index)}
+            role={onStepClick ? "button" : undefined}
+            tabIndex={onStepClick ? 0 : undefined}
+            aria-label={onStepClick ? `Go to step ${index + 1}` : undefined}
           >
             <div
               className={cn(
@@ -46,7 +53,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                 index < currentStep
                   ? 'bg-mint'
                   : index === currentStep
-                  ? 'bg-white border-2 border-mint animate-pulse-mint'
+                  ? 'bg-white border-2 border-mint animate-pulse-slow'
                   : 'bg-stone-200'
               )}
             />

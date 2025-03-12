@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -106,6 +105,12 @@ const DiscoveryForm: React.FC = () => {
   const prevSection = useCallback(() => {
     if (currentSection > 0) {
       setCurrentSection(prev => prev - 1);
+    }
+  }, [currentSection]);
+
+  const handleStepClick = useCallback((stepIndex: number) => {
+    if (stepIndex <= currentSection) {
+      setCurrentSection(stepIndex);
     }
   }, [currentSection]);
 
@@ -607,6 +612,7 @@ const DiscoveryForm: React.FC = () => {
         totalSteps={SECTIONS.length}
         currentStep={currentSection + 1}
         className="mb-8"
+        onStepClick={handleStepClick}
       />
       
       {SECTIONS.map((section, index) => (
@@ -633,3 +639,4 @@ const DiscoveryForm: React.FC = () => {
 };
 
 export default DiscoveryForm;
+

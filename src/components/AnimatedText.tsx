@@ -21,7 +21,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   autoStart = true,
   delay = 0
 }) => {
-  const textRef = useRef<HTMLElement>(null);
+  // Use correct type for the ref based on the tag
+  const textRef = useRef<HTMLElement | null>(null);
   const { startTyping, stopTyping } = useTypewriter(text, speed);
   const startTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -38,14 +39,18 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
         clearTimeout(startTimeoutRef.current);
       }
     };
-  }, [text, autoStart]);
+  }, [text, autoStart, delay, startTyping, stopTyping, onComplete]);
 
-  const TagComponent = tag as keyof JSX.IntrinsicElements;
+  const Component = tag;
 
-  return (
-    <TagComponent ref={textRef} className={className}>
-      {/* Text will be injected by the typewriter effect */}
-    </TagComponent>
+  return React.createElement(
+    Component,
+    { 
+      ref: textRef, 
+      className 
+    },
+    // Text will be injected by the typewriter effect
+    null
   );
 };
 
