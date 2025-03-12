@@ -1,10 +1,7 @@
-
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
+  return <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
       <header className="py-6 border-b border-stone-200 bg-white/70 backdrop-blur-sm sticky top-0 z-50">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center">
@@ -34,10 +31,14 @@ const Index = () => {
       <main className="container max-w-6xl mx-auto px-4 py-12 relative">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <span className="inline-block chip-mint mb-2 animate-fade-in">Client Discovery</span>
-          <h1 className="text-4xl font-medium text-stone-800 mb-4 animate-fade-in" style={{ animationDelay: '100ms' }}>
+          <h1 className="text-4xl font-medium text-stone-800 mb-4 animate-fade-in" style={{
+          animationDelay: '100ms'
+        }}>
             Let's Explore Collaboration Opportunities
           </h1>
-          <p className="text-stone-600 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <p className="text-stone-600 max-w-2xl mx-auto animate-fade-in" style={{
+          animationDelay: '200ms'
+        }}>
             This interactive form will help us understand your business and identify how we can create value together through strategic partnership.
           </p>
         </div>
@@ -45,7 +46,7 @@ const Index = () => {
         <DiscoveryForm />
       </main>
 
-      <footer className="py-8 border-t border-stone-200 bg-white mt-16">
+      <footer className="border-t border-stone-200 bg-white mt-16 py-[21px] my-[240px]">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
@@ -65,8 +66,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
