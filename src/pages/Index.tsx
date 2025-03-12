@@ -1,6 +1,5 @@
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
-
 const Index = () => {
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
       <header className="py-6 border-b border-stone-200 bg-white/70 backdrop-blur-sm sticky top-0 z-50">
@@ -47,7 +46,7 @@ const Index = () => {
         <DiscoveryForm />
       </main>
 
-      <footer className="border-t border-stone-200 bg-white mt-16 py-8">
+      <footer className="border-t border-stone-200 bg-white mt-16 rounded-none py-[17px] my-[240px] px-0 mx-[12px]">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
@@ -69,5 +68,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
