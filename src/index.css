@@ -161,6 +161,6 @@
   }
   
   .img-blend {
-    @apply brightness-75 contrast-125 saturate-75 mix-blend-luminosity dark:brightness-50 dark:contrast-125 dark:saturate-50 dark:hue-rotate-15;
+    @apply brightness-75 contrast-125 saturate-[0.75] mix-blend-luminosity dark:brightness-50 dark:contrast-125 dark:saturate-[0.5] dark:hue-rotate-15;
   }
 }
