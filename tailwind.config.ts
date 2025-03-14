@@ -54,20 +54,20 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				mint: {
-					DEFAULT: '#4ECCA3',
-					light: '#A6EDD5',
-					dark: '#32A882'
+					DEFAULT: '#15f167',
+					light: '#7df9a6',
+					dark: '#0dc554'
 				},
 				stone: {
-					50: '#F7F7F7',
-					100: '#E5E5E5',
-					200: '#D4D4D4',
-					300: '#A0A0A0',
+					50: '#f5f5f5',  // Updated to new off-white
+					100: '#e5e5e5',
+					200: '#d4d4d4',
+					300: '#a0a0a0',
 					400: '#737373',
 					500: '#525252',
 					600: '#404040',
 					700: '#333333',
-					800: '#262626',
+					800: '#1b1b1b',  // Updated to new black
 					900: '#171717'
 				},
 				sidebar: {

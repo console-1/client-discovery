@@ -1,15 +1,22 @@
+
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
+
 const Index = () => {
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
       <header className="py-6 border-b border-stone-200 bg-white/70 backdrop-blur-sm sticky top-0 z-50">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-mint rounded-lg flex items-center justify-center text-white font-bold">
-                D
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-mint rounded-lg flex items-center justify-center text-white">
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                  <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                </svg>
               </div>
-              <h1 className="text-xl font-medium text-stone-800">Discovery Form</h1>
+              <div>
+                <h1 className="text-xl font-bold text-stone-800">design music code</h1>
+                <p className="text-xs text-stone-600 tracking-wider">DO MORE CREATIVELY</p>
+              </div>
             </div>
             <nav>
               <ul className="flex space-x-6">
@@ -51,10 +58,12 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-mint rounded-md flex items-center justify-center text-white font-bold text-xs">
-                  D
+                <div className="w-6 h-6 bg-mint rounded-md flex items-center justify-center text-white">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                    <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                  </svg>
                 </div>
-                <span className="text-stone-800 font-medium">Discovery Form</span>
+                <span className="text-stone-800 font-medium">design music code</span>
               </div>
               <p className="text-stone-500 text-sm mt-1">© 2023 All rights reserved</p>
             </div>
