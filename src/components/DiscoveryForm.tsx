@@ -5,6 +5,7 @@ import ProgressIndicator from './ProgressIndicator';
 import FormSection from './FormSection';
 import AnimatedText from './AnimatedText';
 import { ChevronRight, ChevronLeft, Check, Send } from 'lucide-react';
+
 interface FormData {
   coreOfferings: string;
   uniqueApproach: string;
@@ -23,6 +24,7 @@ interface FormData {
   keyStakeholders: string;
   timeline: string;
 }
+
 const SECTIONS = [{
   id: 'opening',
   title: 'Welcome',
@@ -56,6 +58,7 @@ const SECTIONS = [{
   title: 'Thank You',
   description: "I'm excited about the potential here. Let me summarize what I've heard and our agreed next steps to make sure we're aligned."
 }];
+
 const DiscoveryForm: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [formData, setFormData] = useState<FormData>({
@@ -80,6 +83,7 @@ const DiscoveryForm: React.FC = () => {
   const {
     toast
   } = useToast();
+
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       name,
@@ -90,21 +94,25 @@ const DiscoveryForm: React.FC = () => {
       [name]: value
     }));
   }, []);
+
   const nextSection = useCallback(() => {
     if (currentSection < SECTIONS.length - 1) {
       setCurrentSection(prev => prev + 1);
     }
   }, [currentSection]);
+
   const prevSection = useCallback(() => {
     if (currentSection > 0) {
       setCurrentSection(prev => prev - 1);
     }
   }, [currentSection]);
+
   const handleStepClick = useCallback((stepIndex: number) => {
     if (stepIndex <= currentSection) {
       setCurrentSection(stepIndex);
     }
   }, [currentSection]);
+
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -120,6 +128,7 @@ const DiscoveryForm: React.FC = () => {
       setCurrentSection(0);
     }, 1500);
   }, [toast]);
+
   useEffect(() => {
     // Scroll to top when changing sections
     window.scrollTo({
@@ -127,12 +136,17 @@ const DiscoveryForm: React.FC = () => {
       behavior: 'smooth'
     });
   }, [currentSection]);
+
   const renderFormFields = () => {
     switch (currentSection) {
       case 0:
         // Opening
         return <div className="flex flex-col items-center my-0">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Handshake" className="w-full h-48 object-cover rounded-xl mb-6 opacity-90" />
+            <img 
+              src="public/lovable-uploads/a3ab946f-abe3-4435-97a5-05ec1deea1d5.png" 
+              alt="Design music code studio" 
+              className="w-full h-48 object-cover rounded-xl mb-6 opacity-90 img-blend" 
+            />
             <div className="animate-float">
               <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
                 Get Started <ChevronRight size={18} />
@@ -420,6 +434,7 @@ const DiscoveryForm: React.FC = () => {
         return null;
     }
   };
+
   return <div className="max-w-3xl mx-auto py-0 px-[20px]">
       <ProgressIndicator totalSteps={SECTIONS.length} currentStep={currentSection + 1} className="mb-8" onStepClick={handleStepClick} />
       
@@ -432,4 +447,5 @@ const DiscoveryForm: React.FC = () => {
         </div>)}
     </div>;
 };
+
 export default DiscoveryForm;
