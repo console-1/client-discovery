@@ -26,10 +26,10 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
 
   return (
     <div className={cn('w-full', className)}>
-      <div className="relative h-1 w-full bg-stone-100 rounded-full overflow-hidden">
+      <div className="relative h-1.5 w-full bg-stone-100 rounded-full overflow-hidden">
         <div
           ref={progressRef}
-          className="absolute top-0 left-0 h-full bg-mint transition-all duration-500 ease-out"
+          className="absolute top-0 left-0 h-full bg-gradient-to-r from-mint-light via-mint to-mint-dark animate-pulse-mint transition-all duration-500 ease-out"
           style={{ width: `${(currentStep / totalSteps) * 100}%` }}
         />
       </div>
@@ -49,7 +49,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
           >
             <div
               className={cn(
-                'w-3 h-3 rounded-full transition-all duration-300',
+                'w-4 h-4 rounded-full transition-all duration-300',
                 index < currentStep
                   ? 'bg-mint'
                   : index === currentStep

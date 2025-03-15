@@ -104,11 +104,17 @@ export default {
 					}
 				},
 				'pulse-mint': {
-					'0%, 100%': {
-						boxShadow: '0 0 0 0 rgba(76, 204, 163, 0)'
+					'0%': {
+						opacity: '0.8',
+						backgroundPosition: '0% 50%'
 					},
 					'50%': {
-						boxShadow: '0 0 0 12px rgba(76, 204, 163, 0.25)'
+						opacity: '1',
+						backgroundPosition: '100% 50%'
+					},
+					'100%': {
+						opacity: '0.8',
+						backgroundPosition: '0% 50%'
 					}
 				},
 				'fade-in': {
@@ -173,7 +179,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'pulse-mint': 'pulse-mint 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'pulse-mint': 'pulse-mint 3s ease-in-out infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
