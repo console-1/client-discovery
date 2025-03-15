@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -149,7 +148,7 @@ const DiscoveryForm: React.FC = () => {
               className="w-full h-48 object-cover rounded-xl mb-6 opacity-90 img-blend" 
             />
             <div className="animate-float">
-              <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2 text-[#1b1b1b]">
+              <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
                 Get Started <ChevronRight size={18} />
               </button>
             </div>
@@ -158,28 +157,28 @@ const DiscoveryForm: React.FC = () => {
         // Understanding Business
         return <div className="space-y-5">
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 Could you walk me through your core offerings and who your ideal clients are?
               </label>
               <textarea name="coreOfferings" value={formData.coreOfferings} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your products/services and target audience..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What makes your approach unique in the market?
               </label>
               <textarea name="uniqueApproach" value={formData.uniqueApproach} onChange={handleInputChange} className="textarea-mint" placeholder="Share your unique value proposition..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 Which client acquisition channels have been most effective for you so far?
               </label>
               <textarea name="acquisitionChannels" value={formData.acquisitionChannels} onChange={handleInputChange} className="textarea-mint" placeholder="Tell us about your successful marketing channels..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -191,28 +190,28 @@ const DiscoveryForm: React.FC = () => {
         // Pain Points
         return <div className="space-y-5">
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What are your biggest challenges right now in acquiring new clients?
               </label>
               <textarea name="challenges" value={formData.challenges} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your current challenges..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 Are there specific market segments you're trying to penetrate but finding difficult?
               </label>
               <textarea name="targetSegments" value={formData.targetSegments} onChange={handleInputChange} className="textarea-mint" placeholder="Share details about difficult-to-reach segments..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What would meaningful growth look like for you in the next 6-12 months?
               </label>
               <textarea name="growthGoals" value={formData.growthGoals} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your growth targets and metrics..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -224,28 +223,28 @@ const DiscoveryForm: React.FC = () => {
         // Collaboration
         return <div className="space-y-5">
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 How do you typically structure partnerships with other businesses?
               </label>
               <textarea name="partnershipStructure" value={formData.partnershipStructure} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your typical partnership arrangements..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 Have you had success with referral arrangements, co-marketing, or integrated service offerings in the past?
               </label>
               <textarea name="pastPartnerships" value={formData.pastPartnerships} onChange={handleInputChange} className="textarea-mint" placeholder="Share details about your past partnership experiences..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What would an ideal collaboration look like from your perspective?
               </label>
               <textarea name="idealCollaboration" value={formData.idealCollaboration} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your vision for an ideal partnership..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -257,28 +256,28 @@ const DiscoveryForm: React.FC = () => {
         // Value Exchange
         return <div className="space-y-5">
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What resources or capabilities would help you most in reaching new clients?
               </label>
               <textarea name="resourcesNeeded" value={formData.resourcesNeeded} onChange={handleInputChange} className="textarea-mint" placeholder="Describe resources that would help your business grow..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 How do you evaluate the success of your business partnerships?
               </label>
               <textarea name="evaluationCriteria" value={formData.evaluationCriteria} onChange={handleInputChange} className="textarea-mint" placeholder="Share how you measure partnership success..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What would make this relationship worth investing in from your perspective?
               </label>
               <textarea name="valueExpectations" value={formData.valueExpectations} onChange={handleInputChange} className="textarea-mint" placeholder="Describe your value expectations..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -314,21 +313,21 @@ const DiscoveryForm: React.FC = () => {
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 How do these ideas align with your goals?
               </label>
               <textarea name="feedbackOnIdeas" value={formData.feedbackOnIdeas} onChange={handleInputChange} className="textarea-mint" placeholder="Share your thoughts on these collaboration ideas..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What other approaches do you think would be effective?
               </label>
               <textarea name="additionalIdeas" value={formData.additionalIdeas} onChange={handleInputChange} className="textarea-mint" placeholder="Suggest any other collaboration ideas..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -340,21 +339,21 @@ const DiscoveryForm: React.FC = () => {
         // Next Steps
         return <div className="space-y-5">
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 Who else in your organization should be involved in these discussions?
               </label>
               <textarea name="keyStakeholders" value={formData.keyStakeholders} onChange={handleInputChange} className="textarea-mint" placeholder="List key stakeholders who should be involved..." />
             </div>
             
             <div className="space-y-3">
-              <label className="block text-stone-700">
+              <label className="block text-[#e0e0e0] dark:text-[#e0e0e0]">
                 What timeline makes sense for putting together a formal proposal/agreement?
               </label>
               <textarea name="timeline" value={formData.timeline} onChange={handleInputChange} className="textarea-mint" placeholder="Share your preferred timeline..." />
             </div>
             
             <div className="flex justify-between mt-8">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
               <button onClick={nextSection} className="btn-mint flex items-center gap-2">
@@ -426,7 +425,7 @@ const DiscoveryForm: React.FC = () => {
             </div>
             
             <div className="flex justify-start mt-4">
-              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-stone-600 hover:bg-stone-100 transition-all">
+              <button onClick={prevSection} className="flex items-center gap-2 px-5 py-2 border border-stone-200 rounded-full text-[#f5f5f5] hover:bg-stone-100 hover:text-stone-600 transition-all">
                 <ChevronLeft size={18} /> Back
               </button>
             </div>

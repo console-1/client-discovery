@@ -129,7 +129,7 @@
   }
 
   .btn-mint {
-    @apply bg-mint text-white hover:bg-mint-dark transition-all duration-300 ease-in-out px-6 py-2.5 rounded-full font-medium shadow-md hover:shadow-lg active:scale-[0.98];
+    @apply bg-mint text-[#1b1b1b] hover:bg-mint-dark transition-all duration-300 ease-in-out px-6 py-2.5 rounded-full font-medium shadow-md hover:shadow-lg active:scale-[0.98];
   }
 
   .chip {
@@ -145,7 +145,7 @@
   }
 
   .textarea-mint {
-    @apply w-full px-4 py-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg mint-focus text-stone-700 dark:text-stone-300 placeholder:text-stone-400 dark:placeholder:text-stone-500 resize-none min-h-[120px];
+    @apply w-full px-4 py-3 bg-[#f9f9f9] dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg mint-focus text-stone-700 dark:text-stone-300 placeholder:text-stone-400 dark:placeholder:text-stone-500 resize-none min-h-[120px];
   }
 }
 
