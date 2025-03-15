@@ -33,7 +33,7 @@ const FormSection: React.FC<FormSectionProps> = ({
     <div 
       ref={sectionRef} 
       className={cn(
-        'form-section w-full p-6 md:p-8 bg-transparent border-0', 
+        'form-section w-full p-6 md:p-8 bg-transparent border-none', 
         isActive ? 'active' : '', 
         className
       )}

@@ -31,16 +31,18 @@ const Index = () => {
                   <a href="#" className="text-stone-300 hover:text-mint transition-colors">Contact</a>
                 </li>
               </ul>
-            </nav>
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="flex-grow w-full max-w-6xl mx-auto px-4 py-0">
-        <DiscoveryForm />
+      <main className="flex-grow py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <DiscoveryForm />
+        </div>
       </main>
 
-      <footer className="border-t border-stone-700 bg-stone-900 py-6 mt-auto">
+      <footer className="border-t border-stone-700 bg-stone-900 py-6">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
