@@ -457,6 +457,7 @@ const DiscoveryForm: React.FC = () => {
               isActive={currentSection === index} 
               animationDelay={index * 100}
               sectionLabel={index === 0 ? "Welcome" : `Section ${index}`}
+              isWelcome={index === 0}
             >
               {currentSection === index && renderFormFields()}
             </FormSection>

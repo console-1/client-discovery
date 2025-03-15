@@ -10,6 +10,7 @@ interface FormSectionProps {
   children: React.ReactNode;
   animationDelay?: number;
   sectionLabel?: string;
+  isWelcome?: boolean;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
@@ -19,7 +20,8 @@ const FormSection: React.FC<FormSectionProps> = ({
   className,
   children,
   animationDelay = 0,
-  sectionLabel
+  sectionLabel,
+  isWelcome = false
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
@@ -35,7 +37,8 @@ const FormSection: React.FC<FormSectionProps> = ({
     <div 
       ref={sectionRef} 
       className={cn(
-        'form-section w-full p-6 md:p-8 bg-transparent', 
+        'form-section w-full',
+        isWelcome ? 'p-3 md:p-4 bg-gradient-to-b from-stone-900/10 to-stone-950/20 rounded-xl' : 'p-6 md:p-8 bg-transparent',
         isActive ? 'active' : '', 
         className
       )}
@@ -50,7 +53,10 @@ const FormSection: React.FC<FormSectionProps> = ({
       {/* Add title and description */}
       {title && (
         <h2 
-          className="text-xl font-medium text-stone-800 dark:text-stone-100 mb-3"
+          className={cn(
+            "text-xl font-medium text-stone-800 dark:text-stone-100 mb-3",
+            isWelcome && "text-2xl font-bold"
+          )}
           style={{ animationDelay: `${animationDelay}ms` }}
         >
           {title}
@@ -59,7 +65,10 @@ const FormSection: React.FC<FormSectionProps> = ({
       
       {description && (
         <p 
-          className="text-stone-600 dark:text-stone-300 mb-6"
+          className={cn(
+            "text-stone-600 dark:text-stone-300 mb-6",
+            isWelcome && "text-lg"
+          )}
           style={{ animationDelay: `${animationDelay + 50}ms` }}
         >
           {description === "default" ? 
