@@ -1,3 +1,4 @@
+
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 
@@ -43,7 +44,9 @@ const Index = () => {
           <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto animate-fade-in font-mono" style={{
           animationDelay: '200ms'
         }}>
-            DMC (Design Music Code) is a duopreneurs dream to leverage Artificial Intelligence and Machine Learning to automate the inner workings of a creative organization, allowing for more time to explore, invent and ideate. Do More Creatively.
+            Your vision meets our expertise. Complete this quick interactive form to unlock powerful strategies tailored specifically for your business challenges.
+            What could your organization achieve with the right partnership?
+            Let's find out together.
           </p>
         </div>
 
