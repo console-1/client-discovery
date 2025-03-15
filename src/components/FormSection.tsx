@@ -33,6 +33,39 @@ const FormSection: React.FC<FormSectionProps> = ({
     }
   }, [isActive]);
   
+  // Function to format DMC description with proper styling
+  const formatDMCDescription = () => {
+    if (description !== "default") return description;
+    
+    const paragraphs = [
+      "DMC: Do More Creatively - The Epic Vision",
+      "Imagine standing at the nexus of human creativity and computational power, where the mundane evaporates and pure creation flourishes. This is DMC – not just a company, but a revolution disguised as one.",
+      "Design. Music. Code. Three pillars supporting a cathedral of innovation where duopreneurs aren't just surviving – they're transcending the traditional constraints of creative business.",
+      "The Vision Unleashed",
+      "DMC synergizes with AI and ML not as buzzwords, but as liberation technology – automating the soul-crushing background unnecessaries that typically devours 80% of a creative's time. The result? An explosion of what truly matters:",
+      "• Exploring the uncharted territories of your imagination",
+      "• Inventing solutions that others haven't even conceived of the problems for",
+      "• Ideating at the speed of thought, not the speed of administration"
+    ];
+    
+    return (
+      <div className="space-y-3">
+        <p className="text-mint font-bold">{paragraphs[0]}</p>
+        <p className="leading-relaxed">{paragraphs[1]}</p>
+        <p className="leading-relaxed font-semibold">{paragraphs[2]}</p>
+        <p className="text-mint font-bold mt-5">{paragraphs[3]}</p>
+        <p className="leading-relaxed">{paragraphs[4]}</p>
+        <ul className="space-y-2 pl-1">
+          {paragraphs.slice(5).map((point, index) => (
+            <li key={index} className="text-mint-dark dark:text-mint-light leading-relaxed">
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  
   return (
     <div 
       ref={sectionRef} 
@@ -64,17 +97,15 @@ const FormSection: React.FC<FormSectionProps> = ({
       )}
       
       {description && (
-        <p 
+        <div 
           className={cn(
             "text-stone-600 dark:text-stone-300 mb-6",
             isWelcome && "text-lg"
           )}
           style={{ animationDelay: `${animationDelay + 50}ms` }}
         >
-          {description === "default" ? 
-            "DMC: Do More Creatively - The Epic Vision\nImagine standing at the nexus of human creativity and computational power, where the mundane evaporates and pure creation flourishes. This is DMC – not just a company, but a revolution disguised as one.\nDesign. Music. Code. Three pillars supporting a cathedral of innovation where duopreneurs aren't just surviving – they're transcending the traditional constraints of creative business.\nThe Vision Unleashed\nDMC synergizes with AI and ML not as buzzwords, but as liberation technology – automating the soul-crushing background unnecessaries that typically devours 80% of a creative's time. The result? An explosion of what truly matters:\nExploring the uncharted territories of your imagination\nInventing solutions that others haven't even conceived of the problems for\nIdeating at the speed of thought, not the speed of administration" 
-            : description}
-        </p>
+          {description === "default" ? formatDMCDescription() : description}
+        </div>
       )}
       
       <div className={cn('space-y-4', isActive ? 'animate-fade-in' : '')}>
