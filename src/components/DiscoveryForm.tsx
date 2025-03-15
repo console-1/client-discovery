@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -149,7 +150,7 @@ const DiscoveryForm: React.FC = () => {
             />
             <div className="animate-float">
               <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
-                Get Started <ChevronRight size={18} />
+                Begin Discovery Process <ChevronRight size={18} />
               </button>
             </div>
           </div>;
@@ -441,7 +442,13 @@ const DiscoveryForm: React.FC = () => {
       {SECTIONS.map((section, index) => <div key={section.id} className={cn("transition-all duration-500 ease-out absolute w-[calc(100%-2rem)] max-w-3xl", currentSection === index ? "opacity-100 z-10 translate-x-0" : "opacity-0 -z-10 translate-x-8")} style={{
       display: Math.abs(currentSection - index) <= 1 ? 'block' : 'none'
     }}>
-          <FormSection title={section.title} description={section.description} isActive={currentSection === index} animationDelay={index * 100}>
+          <FormSection 
+            title={section.title} 
+            description={section.description} 
+            isActive={currentSection === index} 
+            animationDelay={index * 100}
+            sectionLabel={index === 0 ? "Welcome" : `Section ${index}`}
+          >
             {currentSection === index && renderFormFields()}
           </FormSection>
         </div>)}

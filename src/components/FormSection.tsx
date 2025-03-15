@@ -10,6 +10,7 @@ interface FormSectionProps {
   className?: string;
   children: React.ReactNode;
   animationDelay?: number;
+  sectionLabel?: string;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
@@ -18,7 +19,8 @@ const FormSection: React.FC<FormSectionProps> = ({
   isActive,
   className,
   children,
-  animationDelay = 0
+  animationDelay = 0,
+  sectionLabel
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
@@ -34,7 +36,7 @@ const FormSection: React.FC<FormSectionProps> = ({
       <div className="space-y-3 mb-6 my-0">
         <div className="inline-block chip-mint mb-2">
           <span className="inline-block w-2 h-2 rounded-full bg-mint mr-1.5"></span>
-          <span>Section {animationDelay / 100 + 1}</span>
+          <span>{sectionLabel || `Section ${animationDelay / 100 + 1}`}</span>
         </div>
         
         {isActive ? <AnimatedText text={title} tag="h2" className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]" delay={animationDelay} /> : <h2 className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]">{title}</h2>}

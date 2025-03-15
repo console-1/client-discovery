@@ -44,7 +44,9 @@ const Index = () => {
           <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto animate-fade-in font-mono" style={{
           animationDelay: '200ms'
         }}>
-            This interactive form will help us understand your business and identify how we can create value together through strategic partnership.
+            Your vision meets our expertise. Complete this quick interactive form to unlock powerful strategies tailored specifically for your business challenges.
+            What could your organization achieve with the right partnership?
+            Let's find out together.
           </p>
         </div>
 
