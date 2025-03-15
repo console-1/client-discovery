@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -27,7 +28,7 @@ interface FormData {
 
 const SECTIONS = [{
   id: 'opening',
-  title: 'Welcome',
+  title: 'DO MORE CREATIVELY',
   description: "Thanks for connecting today. I'm excited to explore how our companies might collaborate to drive growth for both of us. I'd like to understand your business better so we can identify the most valuable opportunities."
 }, {
   id: 'understanding',
@@ -148,7 +149,7 @@ const DiscoveryForm: React.FC = () => {
               className="w-full h-48 object-cover rounded-xl mb-6 opacity-90 img-blend" 
             />
             <div className="animate-float">
-              <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
+              <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2 text-[#1b1b1b]">
                 Get Started <ChevronRight size={18} />
               </button>
             </div>

@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import AnimatedText from './AnimatedText';
@@ -32,9 +33,9 @@ const FormSection: React.FC<FormSectionProps> = ({
           <span>Section {animationDelay / 100 + 1}</span>
         </div>
         
-        {isActive ? <AnimatedText text={title} tag="h2" className="text-2xl font-medium text-stone-800" delay={animationDelay} /> : <h2 className="text-2xl font-medium text-stone-800">{title}</h2>}
+        {isActive ? <AnimatedText text={title} tag="h2" className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]" delay={animationDelay} /> : <h2 className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]">{title}</h2>}
         
-        {description && isActive ? <AnimatedText text={description} className="text-stone-600" delay={animationDelay + 300} speed={20} /> : description && <p className="text-stone-600">{description}</p>}
+        {description && isActive ? <AnimatedText text={description} className="text-stone-600 dark:text-[#f5f5f5]" delay={animationDelay + 300} speed={20} /> : description && <p className="text-stone-600 dark:text-[#f5f5f5]">{description}</p>}
       </div>
       
       <div className={cn('space-y-4', isActive ? 'animate-fade-in' : '')}>
