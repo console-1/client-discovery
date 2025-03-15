@@ -32,7 +32,7 @@ const FormSection: React.FC<FormSectionProps> = ({
   return (
     <div 
       ref={sectionRef} 
-      className={cn('form-section w-full p-6 md:p-8 glass-card', 
+      className={cn('form-section w-full p-6 md:p-8 glass-card border-transparent', 
         isActive ? 'active' : '', 
         className
       )}
