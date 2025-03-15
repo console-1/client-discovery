@@ -50,14 +50,14 @@ const FormSection: React.FC<FormSectionProps> = ({
     
     return (
       <>
-        <p className="text-mint font-bold">{paragraphs[0]}</p>
-        <p className="leading-relaxed">{paragraphs[1]}</p>
-        <p className="leading-relaxed font-semibold">{paragraphs[2]}</p>
-        <p className="text-mint font-bold mt-5">{paragraphs[3]}</p>
-        <p className="leading-relaxed">{paragraphs[4]}</p>
+        <p className="text-mint font-bold font-mono">{paragraphs[0]}</p>
+        <p className="leading-relaxed font-mono">{paragraphs[1]}</p>
+        <p className="leading-relaxed font-semibold font-mono">{paragraphs[2]}</p>
+        <p className="text-mint font-bold mt-5 font-mono">{paragraphs[3]}</p>
+        <p className="leading-relaxed font-mono">{paragraphs[4]}</p>
         <ul className="space-y-2 pl-1">
           {paragraphs.slice(5).map((point, index) => (
-            <li key={index} className="text-mint-dark dark:text-mint-light leading-relaxed">
+            <li key={index} className="text-mint-dark dark:text-mint-light leading-relaxed font-mono">
               {point}
             </li>
           ))}
@@ -80,7 +80,7 @@ const FormSection: React.FC<FormSectionProps> = ({
       {title && (
         <h2 
           className={cn(
-            "text-xl font-medium text-stone-800 dark:text-stone-100 mb-3",
+            "text-xl font-medium text-stone-800 dark:text-stone-100 mb-3 font-mono",
             isWelcome && "text-2xl font-bold"
           )}
           style={{ animationDelay: `${animationDelay}ms` }}
@@ -93,7 +93,7 @@ const FormSection: React.FC<FormSectionProps> = ({
       {description && (
         <div 
           className={cn(
-            "text-stone-600 dark:text-stone-300 mb-6",
+            "text-stone-600 dark:text-stone-300 mb-6 font-mono",
             isWelcome && "text-lg"
           )}
           style={{ animationDelay: `${animationDelay + 50}ms` }}
