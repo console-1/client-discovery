@@ -1,3 +1,4 @@
+
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 const Index = () => {
@@ -22,7 +23,7 @@ const Index = () => {
 
       <main className="container max-w-6xl mx-auto px-4 py-12 flex-grow flex flex-col">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <span className="inline-block chip-mint mb-2 animate-fade-in text-center py-0 my-0 mx-[22px] px-[9px]">CLIENT DISCOVERY</span>
+          <span className="inline-block chip-mint mb-2 animate-fade-in text-left py-0 my-0 mx-0 px-[9px]">CLIENT DISCOVERY</span>
           <h1 style={{
           animationDelay: '100ms'
         }} className="font-medium text-stone-800 dark:text-stone-100 mb-4 animate-fade-in text-2xl text-left">DO  MORE  CREATIVELY</h1>
