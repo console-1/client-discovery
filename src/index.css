@@ -93,6 +93,13 @@
   body {
     @apply bg-background text-foreground antialiased dark:bg-stone-800;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  html {
+    height: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
