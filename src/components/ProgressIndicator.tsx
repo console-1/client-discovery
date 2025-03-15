@@ -26,6 +26,15 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
 
   return (
     <div className={cn('w-full', className)}>
+      <div className="flex justify-between mb-1">
+        <p className="text-xs text-stone-500 dark:text-stone-400">
+          Progress
+        </p>
+        <p className="text-xs text-stone-500 dark:text-stone-400">
+          Step {currentStep} of {totalSteps}
+        </p>
+      </div>
+      
       <div className="relative h-1.5 w-full bg-stone-100 rounded-full overflow-hidden">
         <div
           ref={progressRef}
