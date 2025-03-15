@@ -49,7 +49,7 @@ const FormSection: React.FC<FormSectionProps> = ({
     ];
     
     return (
-      <div className="space-y-3">
+      <>
         <p className="text-mint font-bold">{paragraphs[0]}</p>
         <p className="leading-relaxed">{paragraphs[1]}</p>
         <p className="leading-relaxed font-semibold">{paragraphs[2]}</p>
@@ -62,7 +62,7 @@ const FormSection: React.FC<FormSectionProps> = ({
             </li>
           ))}
         </ul>
-      </div>
+      </>
     );
   };
   
@@ -76,14 +76,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         className
       )}
     >
-      {/* Add section label if provided */}
-      {sectionLabel && (
-        <div className="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
-          {sectionLabel}
-        </div>
-      )}
-      
-      {/* Add title and description */}
+      {/* Title section */}
       {title && (
         <h2 
           className={cn(
@@ -96,6 +89,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         </h2>
       )}
       
+      {/* Description section */}
       {description && (
         <div 
           className={cn(
@@ -108,6 +102,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         </div>
       )}
       
+      {/* Children content */}
       <div className={cn('space-y-4', isActive ? 'animate-fade-in' : '')}>
         {children}
       </div>

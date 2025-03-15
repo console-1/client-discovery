@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -29,7 +28,7 @@ interface FormData {
 const SECTIONS = [{
   id: 'opening',
   title: 'DO MORE CREATIVELY',
-  description: "DMC: Do More Creatively - The Epic Vision\nImagine standing at the nexus of human creativity and computational power, where the mundane evaporates and pure creation flourishes. This is DMC – not just a company, but a revolution disguised as one.\nDesign. Music. Code. Three pillars supporting a cathedral of innovation where duopreneurs aren't just surviving – they're transcending the traditional constraints of creative business.\nThe Vision Unleashed\nDMC synergizes with AI and ML not as buzzwords, but as liberation technology – automating the soul-crushing background unnecessaries that typically devours 80% of a creative's time. The result? An explosion of what truly matters:\nExploring the uncharted territories of your imagination\nInventing solutions that others haven't even conceived of the problems for\nIdeating at the speed of thought, not the speed of administration"
+  description: "default"
 }, {
   id: 'understanding',
   title: 'Understanding Your Business',
@@ -149,6 +148,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 1:
         // Understanding Business
         return <div className="space-y-5">
@@ -182,6 +182,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 2:
         // Pain Points
         return <div className="space-y-5">
@@ -215,6 +216,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 3:
         // Collaboration
         return <div className="space-y-5">
@@ -248,6 +250,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 4:
         // Value Exchange
         return <div className="space-y-5">
@@ -281,6 +284,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 5:
         // Testing Ideas
         return <div className="space-y-5">
@@ -331,6 +335,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 6:
         // Next Steps
         return <div className="space-y-5">
@@ -357,6 +362,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       case 7:
         // Closing
         return <div className="space-y-5">
@@ -426,6 +432,7 @@ const DiscoveryForm: React.FC = () => {
               </button>
             </div>
           </div>;
+      
       default:
         return null;
     }
@@ -456,7 +463,7 @@ const DiscoveryForm: React.FC = () => {
               description={section.description} 
               isActive={currentSection === index} 
               animationDelay={index * 100}
-              sectionLabel={index === 0 ? "Welcome" : `Section ${index}`}
+              sectionLabel={index === 0 ? undefined : `Section ${index}`}
               isWelcome={index === 0}
             >
               {currentSection === index && renderFormFields()}
