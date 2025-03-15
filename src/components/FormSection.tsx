@@ -13,6 +13,8 @@ interface FormSectionProps {
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
+  title,
+  description,
   isActive,
   className,
   children,
@@ -38,6 +40,32 @@ const FormSection: React.FC<FormSectionProps> = ({
         className
       )}
     >
+      {/* Add section label if provided */}
+      {sectionLabel && (
+        <div className="text-xs uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
+          {sectionLabel}
+        </div>
+      )}
+      
+      {/* Add title and description */}
+      {title && (
+        <h2 
+          className="text-xl font-medium text-stone-800 dark:text-stone-100 mb-3"
+          style={{ animationDelay: `${animationDelay}ms` }}
+        >
+          {title}
+        </h2>
+      )}
+      
+      {description && (
+        <p 
+          className="text-stone-600 dark:text-stone-300 mb-6"
+          style={{ animationDelay: `${animationDelay + 50}ms` }}
+        >
+          {description}
+        </p>
+      )}
+      
       <div className={cn('space-y-4', isActive ? 'animate-fade-in' : '')}>
         {children}
       </div>

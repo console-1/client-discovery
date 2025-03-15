@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -430,23 +431,40 @@ const DiscoveryForm: React.FC = () => {
     }
   };
 
-  return <div className="max-w-3xl mx-auto py-0 px-[20px]">
-      <ProgressIndicator totalSteps={SECTIONS.length} currentStep={currentSection + 1} className="mb-8" onStepClick={handleStepClick} />
+  return (
+    <div className="max-w-3xl mx-auto py-0 px-[20px] relative pb-24">
+      <ProgressIndicator 
+        totalSteps={SECTIONS.length} 
+        currentStep={currentSection + 1} 
+        className="mb-8" 
+        onStepClick={handleStepClick} 
+      />
       
-      {SECTIONS.map((section, index) => <div key={section.id} className={cn("transition-all duration-500 ease-out absolute w-[calc(100%-2rem)] max-w-3xl", currentSection === index ? "opacity-100 z-10 translate-x-0" : "opacity-0 -z-10 translate-x-8")} style={{
-      display: Math.abs(currentSection - index) <= 1 ? 'block' : 'none'
-    }}>
-          <FormSection 
-            title={section.title} 
-            description={section.description} 
-            isActive={currentSection === index} 
-            animationDelay={index * 100}
-            sectionLabel={index === 0 ? "Welcome" : `Section ${index}`}
+      <div className="relative min-h-[500px]">
+        {SECTIONS.map((section, index) => (
+          <div 
+            key={section.id} 
+            className={cn(
+              "transition-all duration-500 ease-out w-full",
+              currentSection === index 
+                ? "opacity-100 visible" 
+                : "opacity-0 invisible absolute top-0 left-0"
+            )}
           >
-            {currentSection === index && renderFormFields()}
-          </FormSection>
-        </div>)}
-    </div>;
+            <FormSection 
+              title={section.title} 
+              description={section.description} 
+              isActive={currentSection === index} 
+              animationDelay={index * 100}
+              sectionLabel={index === 0 ? "Welcome" : `Section ${index}`}
+            >
+              {currentSection === index && renderFormFields()}
+            </FormSection>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default DiscoveryForm;
