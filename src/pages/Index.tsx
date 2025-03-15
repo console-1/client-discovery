@@ -1,5 +1,7 @@
+
 import React from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
+
 const Index = () => {
   return <div className="flex flex-col min-h-screen bg-gradient-to-b from-stone-50 to-stone-100 dark:from-stone-800 dark:to-stone-900">
       <header className="py-6 border-b border-stone-200 dark:border-stone-700 bg-white/70 dark:bg-stone-900/70 backdrop-blur-sm sticky top-0 z-50">
@@ -38,8 +40,8 @@ const Index = () => {
           <span className="inline-block chip-mint mb-2 animate-fade-in">Client Discovery</span>
           <h1 style={{
           animationDelay: '100ms'
-        }} className="font-medium text-stone-800 dark:text-stone-100 mb-4 animate-fade-in text-2xl">DO  MORE  CREATIVELY</h1>
-          <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto animate-fade-in" style={{
+        }} className="font-medium text-stone-800 dark:text-stone-100 mb-4 animate-fade-in text-2xl">DO  MORE  CREATIVELY</h1>
+          <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto animate-fade-in font-mono" style={{
           animationDelay: '200ms'
         }}>
             This interactive form will help us understand your business and identify how we can create value together through strategic partnership.
@@ -73,4 +75,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

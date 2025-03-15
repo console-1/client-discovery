@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import AnimatedText from './AnimatedText';
+
 interface FormSectionProps {
   title: string;
   description?: string;
@@ -10,6 +11,7 @@ interface FormSectionProps {
   children: React.ReactNode;
   animationDelay?: number;
 }
+
 const FormSection: React.FC<FormSectionProps> = ({
   title,
   description,
@@ -19,6 +21,7 @@ const FormSection: React.FC<FormSectionProps> = ({
   animationDelay = 0
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     if (isActive && sectionRef.current) {
       sectionRef.current.classList.add('active');
@@ -26,6 +29,7 @@ const FormSection: React.FC<FormSectionProps> = ({
       sectionRef.current.classList.remove('active');
     }
   }, [isActive]);
+  
   return <div ref={sectionRef} className={cn('form-section w-full p-6 md:p-8 glass-card', isActive ? 'active' : '', className)}>
       <div className="space-y-3 mb-6 my-0">
         <div className="inline-block chip-mint mb-2">
@@ -35,7 +39,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         
         {isActive ? <AnimatedText text={title} tag="h2" className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]" delay={animationDelay} /> : <h2 className="text-2xl font-medium text-stone-800 dark:text-[#f5f5f5]">{title}</h2>}
         
-        {description && isActive ? <AnimatedText text={description} className="text-stone-600 dark:text-[#f5f5f5]" delay={animationDelay + 300} speed={20} /> : description && <p className="text-stone-600 dark:text-[#f5f5f5]">{description}</p>}
+        {description && isActive ? <AnimatedText text={description} className="text-stone-600 dark:text-[#f5f5f5] font-mono" delay={animationDelay + 300} speed={20} /> : description && <p className="text-stone-600 dark:text-[#f5f5f5] font-mono">{description}</p>}
       </div>
       
       <div className={cn('space-y-4', isActive ? 'animate-fade-in' : '')}>
@@ -43,4 +47,5 @@ const FormSection: React.FC<FormSectionProps> = ({
       </div>
     </div>;
 };
+
 export default FormSection;
