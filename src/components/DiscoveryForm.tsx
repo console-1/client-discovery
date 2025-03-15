@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -143,11 +142,6 @@ const DiscoveryForm: React.FC = () => {
       case 0:
         // Opening
         return <div className="flex flex-col items-center my-0">
-            <img 
-              src="public/lovable-uploads/a3ab946f-abe3-4435-97a5-05ec1deea1d5.png" 
-              alt="Design music code studio" 
-              className="w-full h-48 object-cover rounded-xl mb-6 opacity-90 img-blend" 
-            />
             <div className="animate-float">
               <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
                 Begin Discovery Process <ChevronRight size={18} />
