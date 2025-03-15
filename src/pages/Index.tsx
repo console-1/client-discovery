@@ -31,7 +31,7 @@ const Index = () => {
                   <a href="#" className="text-stone-300 hover:text-mint transition-colors">Contact</a>
                 </li>
               </ul>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
