@@ -62,7 +62,9 @@ const FormSection: React.FC<FormSectionProps> = ({
           className="text-stone-600 dark:text-stone-300 mb-6"
           style={{ animationDelay: `${animationDelay + 50}ms` }}
         >
-          {description}
+          {description === "default" ? 
+            "DMC: Do More Creatively - The Epic Vision\nImagine standing at the nexus of human creativity and computational power, where the mundane evaporates and pure creation flourishes. This is DMC – not just a company, but a revolution disguised as one.\nDesign. Music. Code. Three pillars supporting a cathedral of innovation where duopreneurs aren't just surviving – they're transcending the traditional constraints of creative business.\nThe Vision Unleashed\nDMC synergizes with AI and ML not as buzzwords, but as liberation technology – automating the soul-crushing background unnecessaries that typically devours 80% of a creative's time. The result? An explosion of what truly matters:\nExploring the uncharted territories of your imagination\nInventing solutions that others haven't even conceived of the problems for\nIdeating at the speed of thought, not the speed of administration" 
+            : description}
         </p>
       )}
       
