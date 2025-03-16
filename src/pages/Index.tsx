@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { PAGE_CONTENT } from '@/lib/content';
 
 const Index = () => {
-  const { header, intro } = PAGE_CONTENT;
+  const { header } = PAGE_CONTENT;
   
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-stone-50 to-stone-100 dark:from-stone-800 dark:to-stone-900">
