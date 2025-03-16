@@ -1,3 +1,4 @@
+
 import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,7 +21,7 @@ const Index = () => {
               style={{ animationDelay: '200ms' }} 
               className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-[14px]"
             >
-              {intro.description}
+              Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
             </p>
           </div>
         </div>
