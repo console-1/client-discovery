@@ -14,7 +14,7 @@ const Index = () => {
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <div className="flex flex-col items-center">
             <span className="inline-block chip-mint mb-2 animate-fade-in py-0 my-0 mx-0 px-[9px]">
-              {intro.badge}
+              DO MORE CREATIVELY
             </span>
             
             <p 
