@@ -19,8 +19,6 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
 
   useEffect(() => {
     if (progressRef.current) {
-      // Fix the progress calculation to be based on currentStep-1 to totalSteps-1 ratio
-      // This ensures progress is 0% at step 1 and 100% at the last step
       const progress = ((currentStep) / (totalSteps - 1)) * 100;
       progressRef.current.style.width = `${progress}%`;
     }
@@ -75,7 +73,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
                   index < currentStep
                     ? 'bg-mint'
                     : index === currentStep
-                    ? 'bg-white dark:bg-stone-900 border-[3px] border-mint shadow-[0_0_15px_rgba(0,239,174,0.8)] animate-pulse-active'
+                    ? 'bg-white dark:bg-stone-900 border-[3px] border-mint shadow-[0_0_8px_rgba(0,239,174,0.6)] animate-pulse-active'
                     : 'bg-stone-200 dark:bg-stone-600'
                 )}
               />
