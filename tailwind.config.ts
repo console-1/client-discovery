@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -59,7 +58,7 @@ export default {
 					dark: '#00c792'
 				},
 				stone: {
-					50: '#f5f5f5',  // Updated to new off-white
+					50: '#f5f5f5',
 					100: '#e5e5e5',
 					200: '#d4d4d4',
 					300: '#a0a0a0',
@@ -67,7 +66,7 @@ export default {
 					500: '#525252',
 					600: '#404040',
 					700: '#333333',
-					800: '#1b1b1b',  // Updated to new black
+					800: '#1b1b1b',
 					900: '#171717'
 				},
 				sidebar: {
@@ -191,7 +190,7 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-mint': 'pulse-mint 3s ease-in-out infinite',
-				'pulse-active': 'pulse-active 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'pulse-active': 'pulse-active 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
