@@ -19,9 +19,16 @@ const Index = () => {
             
             <p 
               style={{ animationDelay: '200ms' }} 
-              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-6"
+              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-4"
             >
               Design Music Code is a duopreneurs dream to leverage Artificial Intelligence and Machine Learning to automate the inner workings of a creative organization, allowing for more time to explore, invent, ideate, and, you guessed it... create.
+            </p>
+            
+            <p 
+              style={{ animationDelay: '300ms' }} 
+              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-4"
+            >
+              Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
             </p>
           </div>
         </div>
