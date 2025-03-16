@@ -2,50 +2,20 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import ProgressIndicator from './ProgressIndicator';
-import FormSection from './FormSection';
-import AnimatedText from './AnimatedText';
-import { ChevronRight, ChevronLeft, Check, Send } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Send } from 'lucide-react';
 import { FORM_SECTIONS, PAGE_CONTENT } from '@/lib/content';
 
 interface FormData {
-  coreOfferings: string;
-  uniqueApproach: string;
-  acquisitionChannels: string;
-  challenges: string;
-  targetSegments: string;
-  growthGoals: string;
-  partnershipStructure: string;
-  pastPartnerships: string;
-  idealCollaboration: string;
-  resourcesNeeded: string;
-  evaluationCriteria: string;
-  valueExpectations: string;
-  feedbackOnIdeas: string;
-  additionalIdeas: string;
-  keyStakeholders: string;
-  timeline: string;
+  businessFoundation: string;
+  growthChallenges: string;
   [key: string]: string;
 }
 
 const DiscoveryForm: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [formData, setFormData] = useState<FormData>({
-    coreOfferings: '',
-    uniqueApproach: '',
-    acquisitionChannels: '',
-    challenges: '',
-    targetSegments: '',
-    growthGoals: '',
-    partnershipStructure: '',
-    pastPartnerships: '',
-    idealCollaboration: '',
-    resourcesNeeded: '',
-    evaluationCriteria: '',
-    valueExpectations: '',
-    feedbackOnIdeas: '',
-    additionalIdeas: '',
-    keyStakeholders: '',
-    timeline: ''
+    businessFoundation: '',
+    growthChallenges: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -147,8 +117,12 @@ const DiscoveryForm: React.FC = () => {
                     name={field.name} 
                     value={formData[field.name]} 
                     onChange={handleInputChange} 
-                    className="textarea-mint w-full" 
+                    className={cn(
+                      "textarea-mint w-full",
+                      (currentSection === 1 || currentSection === 2) && "min-h-[300px]" // Make textarea larger for main sections
+                    )}
                     placeholder={field.placeholder} 
+                    style={{ whiteSpace: 'pre-line' }} // Preserve line breaks in placeholder
                   />
                 </div>
               ))}
