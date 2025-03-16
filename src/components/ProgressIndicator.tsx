@@ -75,7 +75,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
                   index < currentStep
                     ? 'bg-mint'
                     : index === currentStep
-                    ? 'bg-white border-2 border-mint animate-pulse-slow'
+                    ? 'bg-white border-2 border-mint shadow-[0_0_10px_rgba(0,239,174,0.7)] animate-pulse-active'
                     : 'bg-stone-200 dark:bg-stone-600'
                 )}
               />

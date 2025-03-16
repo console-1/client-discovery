@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -116,6 +117,17 @@ export default {
 						backgroundPosition: '0% 50%'
 					}
 				},
+				'pulse-active': {
+					'0%': {
+						boxShadow: '0 0 0 0 rgba(0, 239, 174, 0.7)'
+					},
+					'50%': {
+						boxShadow: '0 0 0 10px rgba(0, 239, 174, 0)'
+					},
+					'100%': {
+						boxShadow: '0 0 0 0 rgba(0, 239, 174, 0)'
+					}
+				},
 				'fade-in': {
 					'0%': {
 						opacity: '0',
@@ -179,6 +191,7 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-mint': 'pulse-mint 3s ease-in-out infinite',
+				'pulse-active': 'pulse-active 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
