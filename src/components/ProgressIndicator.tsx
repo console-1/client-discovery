@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -18,7 +19,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
 
   useEffect(() => {
     if (progressRef.current) {
-      const progress = (currentStep / totalSteps) * 100;
+      // Fix the progress calculation to be based on currentStep-1 to totalSteps-1 ratio
+      // This ensures progress is 0% at step 1 and 100% at the last step
+      const progress = ((currentStep) / (totalSteps - 1)) * 100;
       progressRef.current.style.width = `${progress}%`;
     }
   }, [currentStep, totalSteps]);
@@ -50,8 +53,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
       </div>
     )), [totalSteps, currentStep, onStepClick]);
 
+  // Fix the progress width calculation to match the effect calculation
   const progressWidth = useMemo(() => 
-    `${(currentStep / totalSteps) * 100}%`, 
+    `${((currentStep) / (totalSteps - 1)) * 100}%`, 
     [currentStep, totalSteps]
   );
 
@@ -62,7 +66,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
           Progress
         </p>
         <p className="text-xs text-stone-500 dark:text-stone-400">
-          Step {currentStep} of {totalSteps}
+          Step {currentStep + 1} of {totalSteps}
         </p>
       </div>
       
