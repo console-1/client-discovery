@@ -43,24 +43,24 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
       </div>
       
       {/* Progress bar container with relative positioning */}
-      <div className="relative h-4 w-full flex items-center">
-        {/* Background line */}
-        <div className="absolute h-1.5 w-full bg-stone-100 dark:bg-stone-700 rounded-full"></div>
+      <div className="relative h-4 w-full">
+        {/* Background line - centered vertically */}
+        <div className="absolute h-1.5 top-1/2 -translate-y-1/2 w-full bg-stone-100 dark:bg-stone-700 rounded-full"></div>
         
-        {/* Progress fill */}
+        {/* Progress fill - centered vertically */}
         <div
           ref={progressRef}
-          className="absolute top-0 left-0 h-1.5 bg-gradient-to-r from-mint-light via-mint to-mint-dark animate-pulse-mint transition-all duration-500 ease-out rounded-full"
+          className="absolute h-1.5 top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-mint-light via-mint to-mint-dark animate-pulse-mint transition-all duration-500 ease-out rounded-full"
           style={{ width: progressWidth }}
         />
         
         {/* Dots positioned absolutely on top of the line */}
-        <div className="absolute w-full flex justify-between">
+        <div className="absolute w-full flex justify-between top-1/2 -translate-y-1/2">
           {Array.from({ length: totalSteps }).map((_, index) => (
             <div
               key={index}
               className={cn(
-                'relative flex flex-col items-center',
+                'flex items-center justify-center',
                 index < currentStep ? 'text-mint' : 'text-stone-400',
                 onStepClick ? 'cursor-pointer' : ''
               )}
