@@ -1,15 +1,17 @@
+
 // Form sections and content for the client discovery application
 
 export const FORM_SECTIONS = [
   {
     id: 'opening',
-    title: '',
+    title: 'DO MORE CREATIVELY',
     description: '',
     fields: []
   },
   {
     id: 'understanding',
     title: 'Business Foundation',
+    sectionHeader: 'UNDERSTAND DEEPLY',
     description: '',
     fields: [
       {
@@ -27,6 +29,7 @@ export const FORM_SECTIONS = [
   {
     id: 'growthChallenges',
     title: 'Growth, Challenges & Opportunities',
+    sectionHeader: 'GROW STRATEGICALLY',
     description: '',
     fields: [
       {
@@ -43,6 +46,7 @@ export const FORM_SECTIONS = [
   {
     id: 'closing',
     title: 'Thank You',
+    sectionHeader: 'PARTNER MEANINGFULLY',
     description: "I'm excited about the potential here. Let me summarize what I've heard and our agreed next steps to make sure we're aligned.",
     fields: [],
     extraContent: {

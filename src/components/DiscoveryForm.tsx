@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -70,8 +71,21 @@ const DiscoveryForm: React.FC = () => {
     });
   }, [currentSection]);
 
+  // Get current section header
+  const getCurrentSectionHeader = () => {
+    const section = FORM_SECTIONS[currentSection];
+    return section.sectionHeader || section.title || '';
+  };
+
   return (
     <div className="max-w-3xl mx-auto">
+      {/* Section header that changes with each section */}
+      <div className="mb-8 text-center">
+        <span className="inline-block chip-mint mb-2 animate-fade-in py-0 my-0 mx-0 px-[9px]">
+          {getCurrentSectionHeader()}
+        </span>
+      </div>
+      
       {/* Progress indicator - left aligned */}
       <div className="mb-16 text-left">
         <ProgressIndicator
