@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -108,6 +109,17 @@ const DiscoveryForm: React.FC = () => {
     });
   }, [currentSection]);
 
+  // Helper function to render the last saved text
+  const renderLastSavedText = () => {
+    if (!lastSaved) return null;
+    
+    return (
+      <div className="text-xs text-stone-500 dark:text-stone-400 font-mono">
+        Last saved: {lastSaved.toLocaleTimeString()}
+      </div>
+    );
+  };
+
   return (
     <div className="max-w-3xl mx-auto">
       <div className="mb-8 text-left">
@@ -118,9 +130,10 @@ const DiscoveryForm: React.FC = () => {
         />
       </div>
 
-      {lastSaved && (
-        <div className="text-xs text-stone-500 dark:text-stone-400 text-right mb-2 font-mono">
-          Last saved: {lastSaved.toLocaleTimeString()}
+      {/* Only show "Last saved" on top for sections that aren't 0, 1, 2, or 3 */}
+      {(currentSection !== 0 && currentSection !== 1 && currentSection !== 2) && (
+        <div className="text-right mb-2">
+          {renderLastSavedText()}
         </div>
       )}
 
@@ -168,6 +181,13 @@ const DiscoveryForm: React.FC = () => {
                     placeholder={field.placeholder} 
                     style={{ whiteSpace: 'pre-line' }}
                   />
+                  
+                  {/* Add "Last saved" text below textbox for sections 1 and 2 */}
+                  {(currentSection === 1 || currentSection === 2) && (
+                    <div className="text-right mt-1">
+                      {renderLastSavedText()}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
