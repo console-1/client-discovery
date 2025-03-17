@@ -17,7 +17,21 @@ const Index = () => {
               style={{ animationDelay: '200ms' }} 
               className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-4"
             >
-              Design Music Code is a duopreneurs dream to leverage Artificial Intelligence and Machine Learning to automate the inner workings of a creative organization, allowing for more time to explore, invent, ideate, and, you guessed it... create.
+              DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
+            </p>
+            
+            <p 
+              style={{ animationDelay: '300ms' }} 
+              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-2"
+            >
+              alchemedia lab. powers design innovation, happy little accidents crafts sonic experiences, and console-one engineers technical solutions through code.
+            </p>
+            
+            <p 
+              style={{ animationDelay: '400ms' }} 
+              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-2 mb-4"
+            >
+              Operating both independently and as an integrated ecosystem, these specialized studios deliver tailored creative solutions that transform client visions into reality.
             </p>
             
             {/* Added margin-top to create space between the paragraph and chip */}
