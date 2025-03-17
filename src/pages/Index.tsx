@@ -10,7 +10,7 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-stone-50 to-stone-100 dark:from-stone-800 dark:to-stone-900">
       <Header title={header.title} subtitle={header.subtitle} />
-      <main className="flex-1 container max-w-6xl mx-auto px-4 pt-32 pb-24 flex flex-col">
+      <main className="flex-1 container max-w-6xl mx-auto px-4 pt-20 pb-24 flex flex-col">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <div className="flex flex-col items-center">
             <p 
