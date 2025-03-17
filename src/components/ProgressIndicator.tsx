@@ -30,7 +30,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   );
 
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('w-full -mt-2', className)}>
       <div className="flex justify-between mb-1">
         <p className="text-xs text-stone-500 dark:text-stone-400 font-mono">
           Progress
