@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import ProgressIndicator from './ProgressIndicator';
@@ -12,14 +11,50 @@ interface FormData {
   [key: string]: string;
 }
 
+const AUTOSAVE_INTERVAL = 30000; // 30 seconds
+
 const DiscoveryForm: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const [formData, setFormData] = useState<FormData>({
-    businessFoundation: '',
-    growthChallenges: ''
+  const [formData, setFormData] = useState<FormData>(() => {
+    const savedData = localStorage.getItem('discoveryFormData');
+    return savedData ? JSON.parse(savedData) : {
+      businessFoundation: '',
+      growthChallenges: ''
+    };
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const { toast } = useToast();
+  const autoSaveTimerRef = useRef<number | null>(null);
+
+  const saveFormData = useCallback(() => {
+    localStorage.setItem('discoveryFormData', JSON.stringify(formData));
+    setLastSaved(new Date());
+    console.log('Form data autosaved', new Date().toLocaleTimeString());
+  }, [formData]);
+
+  useEffect(() => {
+    if (autoSaveTimerRef.current) {
+      window.clearInterval(autoSaveTimerRef.current);
+    }
+    
+    autoSaveTimerRef.current = window.setInterval(saveFormData, AUTOSAVE_INTERVAL);
+    
+    return () => {
+      if (autoSaveTimerRef.current) {
+        window.clearInterval(autoSaveTimerRef.current);
+        autoSaveTimerRef.current = null;
+      }
+    };
+  }, [saveFormData]);
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      saveFormData();
+    }, 2000);
+    
+    return () => clearTimeout(debounceTimer);
+  }, [formData, saveFormData]);
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -32,39 +67,41 @@ const DiscoveryForm: React.FC = () => {
   const nextSection = useCallback(() => {
     if (currentSection < FORM_SECTIONS.length - 1) {
       setCurrentSection(prev => prev + 1);
+      saveFormData();
     }
-  }, [currentSection]);
+  }, [currentSection, saveFormData]);
 
   const prevSection = useCallback(() => {
     if (currentSection > 0) {
       setCurrentSection(prev => prev - 1);
+      saveFormData();
     }
-  }, [currentSection]);
+  }, [currentSection, saveFormData]);
 
   const handleStepClick = useCallback((stepIndex: number) => {
     if (stepIndex <= currentSection) {
       setCurrentSection(stepIndex);
+      saveFormData();
     }
-  }, [currentSection]);
+  }, [currentSection, saveFormData]);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
+    saveFormData();
+
     setTimeout(() => {
       toast({
         title: "Form submitted!",
         description: "Thank you for sharing your information. We'll be in touch soon."
       });
       setIsSubmitting(false);
-      // Reset or navigate away
       setCurrentSection(0);
     }, 1500);
-  }, [toast]);
+  }, [toast, saveFormData]);
 
   useEffect(() => {
-    // Scroll to top when changing sections
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -73,7 +110,6 @@ const DiscoveryForm: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* Progress indicator - left aligned */}
       <div className="mb-8 text-left">
         <ProgressIndicator
           totalSteps={FORM_SECTIONS.length}
@@ -82,11 +118,15 @@ const DiscoveryForm: React.FC = () => {
         />
       </div>
 
-      {/* Form content - centered */}
+      {lastSaved && (
+        <div className="text-xs text-stone-500 dark:text-stone-400 text-right mb-2 font-mono">
+          Last saved: {lastSaved.toLocaleTimeString()}
+        </div>
+      )}
+
       <div className="text-center mt-4">
         {currentSection === 0 ? (
           <div className="flex flex-col items-center my-0">
-            {/* Moved paragraph from Index.tsx to here, between progress bar and button */}
             <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8">
               Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
             </p>
@@ -102,7 +142,6 @@ const DiscoveryForm: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-5">
-            {/* Section title and description - centered */}
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-2">
                 {FORM_SECTIONS[currentSection].title}
@@ -112,7 +151,6 @@ const DiscoveryForm: React.FC = () => {
               </p>
             </div>
 
-            {/* Form fields - centered with left-aligned text inside */}
             <div className="text-left">
               {FORM_SECTIONS[currentSection].fields?.map((field) => (
                 <div key={field.name} className="space-y-3 mb-6">
@@ -125,16 +163,15 @@ const DiscoveryForm: React.FC = () => {
                     onChange={handleInputChange} 
                     className={cn(
                       "textarea-mint w-full",
-                      (currentSection === 1 || currentSection === 2) && "min-h-[300px]" // Make textarea larger for main sections
+                      (currentSection === 1 || currentSection === 2) && "min-h-[300px]"
                     )}
                     placeholder={field.placeholder} 
-                    style={{ whiteSpace: 'pre-line' }} // Preserve line breaks in placeholder
+                    style={{ whiteSpace: 'pre-line' }}
                   />
                 </div>
               ))}
             </div>
 
-            {/* Navigation buttons - centered */}
             <div className="flex justify-center gap-4 mt-8">
               {currentSection > 0 && (
                 <button 
