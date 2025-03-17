@@ -45,10 +45,10 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
         {/* Background line - centered vertically */}
         <div className="absolute h-1.5 top-1/2 -translate-y-1/2 w-full bg-stone-100 dark:bg-stone-700 rounded-full"></div>
         
-        {/* Progress fill - centered vertically - slowed down animation from animate-pulse-mint to a custom slower class */}
+        {/* Progress fill - centered vertically - with slow pulsing animation */}
         <div
           ref={progressRef}
-          className="absolute h-1.5 top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-mint-light via-mint to-mint-dark transition-all duration-500 ease-out rounded-full"
+          className="absolute h-1.5 top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-mint-light via-mint to-mint-dark animate-pulse-slow transition-all duration-500 ease-out rounded-full"
           style={{ width: progressWidth }}
         />
         
@@ -73,7 +73,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
                   index < currentStep
                     ? 'bg-mint'
                     : index === currentStep
-                    ? 'bg-white dark:bg-stone-900 border-[3px] border-mint shadow-[0_0_8px_rgba(0,239,174,0.6)]'
+                    ? 'bg-white dark:bg-stone-900 border-[3px] border-mint shadow-[0_0_8px_rgba(0,239,174,0.6)] animate-pulse-slow'
                     : 'bg-stone-200 dark:bg-stone-600'
                 )}
               />
