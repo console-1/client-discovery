@@ -20,6 +20,10 @@ const Index = () => {
               Design Music Code is a duopreneurs dream to leverage Artificial Intelligence and Machine Learning to automate the inner workings of a creative organization, allowing for more time to explore, invent, ideate, and, you guessed it... create.
             </p>
             
+            <span className="inline-block chip-mint mb-2 animate-fade-in py-0 my-0 mx-0 px-[9px]">
+              DO MORE CREATIVELY
+            </span>
+            
             <p 
               style={{ animationDelay: '300ms' }} 
               className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono py-4"
