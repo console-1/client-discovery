@@ -70,12 +70,6 @@ const DiscoveryForm: React.FC = () => {
     });
   }, [currentSection]);
 
-  // Get current section header
-  const getCurrentSectionHeader = () => {
-    const section = FORM_SECTIONS[currentSection];
-    return section.sectionHeader || section.title || '';
-  };
-
   return (
     <div className="max-w-3xl mx-auto">
       {/* Progress indicator - left aligned */}
