@@ -74,7 +74,7 @@ const DiscoveryForm: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto">
       {/* Progress indicator - left aligned */}
-      <div className="mb-16 text-left">
+      <div className="mb-8 text-left">
         <ProgressIndicator
           totalSteps={FORM_SECTIONS.length}
           currentStep={currentSection}
@@ -83,9 +83,9 @@ const DiscoveryForm: React.FC = () => {
       </div>
 
       {/* Form content - centered */}
-      <div className="text-center mt-12">
+      <div className="text-center mt-4">
         {currentSection === 0 ? (
-          <div className="flex flex-col items-center my-12">
+          <div className="flex flex-col items-center my-0">
             {/* Moved paragraph from Index.tsx to here, between progress bar and button */}
             <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8">
               Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
