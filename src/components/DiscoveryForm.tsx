@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
@@ -85,6 +86,11 @@ const DiscoveryForm: React.FC = () => {
       <div className="text-center mt-12">
         {currentSection === 0 ? (
           <div className="flex flex-col items-center my-12">
+            {/* Moved paragraph from Index.tsx to here, between progress bar and button */}
+            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8">
+              Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
+            </p>
+            
             <div className="animate-float">
               <button 
                 onClick={nextSection} 
