@@ -51,18 +51,14 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
       sizeClasses[size],
       className
     )}>
-      <div 
+      <img 
+        src={logoImage}
+        alt="Logo" 
         className={cn(
-          "w-full h-full flex items-center justify-center transition-all duration-1000",
-          isPulsing && "animate-pulse-slow"
+          "w-full h-full object-contain transition-all duration-300",
+          isPulsing && "filter drop-shadow-[0_0_8px_rgba(21,241,103,0.6)]"
         )}
-      >
-        <img 
-          src={logoImage}
-          alt="Logo" 
-          className="w-full h-full object-contain"
-        />
-      </div>
+      />
     </div>
   );
 };
