@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
