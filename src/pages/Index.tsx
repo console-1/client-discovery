@@ -22,7 +22,7 @@ const Index = () => {
       <main className="flex-1 container max-w-6xl mx-auto px-4 pt-20 pb-24 flex flex-col">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <div className="flex flex-col items-center">
-            <span className="inline-block chip-mint mb-4 animate-fade-in">
+            <span className="inline-block chip-mint chip-mint-cursor mb-4 animate-fade-in">
               {currentIntro.badge}
             </span>
             {currentIntro.title && currentIntro.title !== 'DO MORE CREATIVELY' && (
