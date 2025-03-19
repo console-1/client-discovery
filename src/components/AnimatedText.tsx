@@ -25,11 +25,26 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   const textRef = useRef<HTMLElement | null>(null);
   const { startTyping, stopTyping } = useTypewriter(text, speed);
   const startTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const completedRef = useRef(false);
 
   useEffect(() => {
+    // Reset completed state when text changes
+    completedRef.current = false;
+    
     if (autoStart && textRef.current) {
+      // Clear any existing timeout
+      if (startTimeoutRef.current) {
+        clearTimeout(startTimeoutRef.current);
+      }
+      
+      // Start typing after the specified delay
       startTimeoutRef.current = setTimeout(() => {
-        startTyping(textRef.current, onComplete);
+        startTyping(textRef.current, () => {
+          if (onComplete && !completedRef.current) {
+            completedRef.current = true;
+            onComplete();
+          }
+        });
       }, delay);
     }
 

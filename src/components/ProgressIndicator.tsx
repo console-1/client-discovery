@@ -7,30 +7,54 @@ interface ProgressIndicatorProps {
   currentStep: number;
   className?: string;
   onStepClick?: (stepIndex: number) => void;
+  animationDelay?: number;
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   totalSteps,
   currentStep,
   className,
-  onStepClick
+  onStepClick,
+  animationDelay = 0
 }) => {
   const progressRef = useRef<HTMLDivElement>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   useEffect(() => {
-    if (progressRef.current) {
-      const progress = ((currentStep) / (totalSteps - 1)) * 100;
-      progressRef.current.style.width = `${progress}%`;
+    // Clear any existing timeout
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
     }
-  }, [currentStep, totalSteps]);
+    
+    // Set initial state - not showing progress
+    setIsAnimating(false);
+    
+    // Set the timeout to start animation after delay
+    animationTimeoutRef.current = setTimeout(() => {
+      setIsAnimating(true);
+      if (progressRef.current) {
+        const progress = ((currentStep) / (totalSteps - 1)) * 100;
+        progressRef.current.style.width = `${progress}%`;
+      }
+    }, animationDelay);
+    
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, [currentStep, totalSteps, animationDelay]);
 
   const progressWidth = useMemo(() => 
-    `${((currentStep) / (totalSteps - 1)) * 100}%`, 
-    [currentStep, totalSteps]
+    isAnimating ? `${((currentStep) / (totalSteps - 1)) * 100}%` : '0%', 
+    [currentStep, totalSteps, isAnimating]
   );
 
   return (
-    <div className={cn('w-full -mt-2', className)}>
+    <div className={cn('w-full -mt-2 transition-opacity duration-500', 
+                      isAnimating ? 'opacity-100' : 'opacity-0', 
+                      className)}>
       <div className="flex justify-between mb-1">
         <p className="text-xs text-stone-500 dark:text-stone-400 font-mono">
           Progress
@@ -58,10 +82,12 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
             <div
               key={index}
               className={cn(
-                'flex items-center justify-center',
+                'flex items-center justify-center transition-opacity duration-300',
                 index < currentStep ? 'text-mint' : 'text-stone-400',
-                onStepClick ? 'cursor-pointer' : ''
+                onStepClick ? 'cursor-pointer' : '',
+                isAnimating ? 'opacity-100' : 'opacity-0'
               )}
+              style={{ transitionDelay: `${index * 100}ms` }}
               onClick={() => onStepClick && onStepClick(index)}
               role={onStepClick ? "button" : undefined}
               tabIndex={onStepClick ? 0 : undefined}
@@ -87,7 +113,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   return prevProps.currentStep === nextProps.currentStep &&
          prevProps.totalSteps === nextProps.totalSteps &&
          prevProps.className === nextProps.className &&
-         prevProps.onStepClick === nextProps.onStepClick;
+         prevProps.onStepClick === nextProps.onStepClick &&
+         prevProps.animationDelay === nextProps.animationDelay;
 });
 
 ProgressIndicator.displayName = 'ProgressIndicator';
