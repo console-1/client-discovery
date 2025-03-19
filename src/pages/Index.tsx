@@ -25,11 +25,6 @@ const Index = () => {
             <span className="inline-block chip-mint chip-mint-cursor mb-4 animate-fade-in">
               {currentIntro.badge}
             </span>
-            {currentIntro.title && currentIntro.title !== 'DO MORE CREATIVELY' && (
-              <h2 className="text-2xl font-medium text-stone-800 dark:text-stone-100 mb-3 animate-fade-in">
-                {currentIntro.title}
-              </h2>
-            )}
             <p 
               style={{ animationDelay: '200ms' }} 
               className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
