@@ -127,7 +127,7 @@ const DiscoveryForm: React.FC = () => {
 
       <div className="text-center mt-4">
         {currentSection === 0 ? <div className="flex flex-col items-center my-0">
-            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8"><strong>DMC</strong> orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
+            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8"><strong>Design Music Code</strong> orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
             <br /><br />
 <strong>alchemedia lab.</strong> powers design innovation, <strong>happy little accidents</strong> crafts sonic experiences, and <strong>console-one</strong> engineers technical solutions through code.
 
