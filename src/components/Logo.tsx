@@ -9,7 +9,7 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
-  const [isRotating, setIsRotating] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const sizeClasses = {
@@ -19,23 +19,23 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
   };
 
   useEffect(() => {
-    const scheduleNextRotation = () => {
+    const scheduleNextPulse = () => {
       // Random time between 5 and 15 seconds
       const randomDelay = Math.floor(Math.random() * 10000) + 5000;
       
       timeoutRef.current = setTimeout(() => {
-        setIsRotating(true);
+        setIsPulsing(true);
         
-        // Reset rotation after animation completes
+        // Reset pulse after animation completes
         setTimeout(() => {
-          setIsRotating(false);
-          scheduleNextRotation();
-        }, 1000); // 1 second for rotation
+          setIsPulsing(false);
+          scheduleNextPulse();
+        }, 1000); // 1 second for pulse
       }, randomDelay);
     };
 
-    // Start the rotation cycle
-    scheduleNextRotation();
+    // Start the pulse cycle
+    scheduleNextPulse();
 
     // Cleanup
     return () => {
@@ -51,14 +51,18 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
       sizeClasses[size],
       className
     )}>
-      <img 
-        src={logoImage}
-        alt="Logo" 
+      <div 
         className={cn(
-          "w-full h-full object-contain transition-transform duration-1000",
-          isRotating && "rotate-[360deg]"
+          "w-full h-full flex items-center justify-center transition-all duration-1000",
+          isPulsing && "animate-pulse-slow"
         )}
-      />
+      >
+        <img 
+          src={logoImage}
+          alt="Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
     </div>
   );
 };
