@@ -120,6 +120,10 @@ const DiscoveryForm: React.FC = () => {
     );
   };
 
+  // Get current section's introduction content
+  const currentIntroText = FORM_SECTIONS[currentSection]?.introText || '';
+  const currentIntroChip = FORM_SECTIONS[currentSection]?.introChip || '';
+
   return (
     <div className="max-w-3xl mx-auto">
       <div className="mb-8 text-left">
@@ -128,6 +132,20 @@ const DiscoveryForm: React.FC = () => {
           currentStep={currentSection}
           onStepClick={handleStepClick}
         />
+      </div>
+
+      {/* Display the section-specific introduction */}
+      <div className="text-center mb-8">
+        <p 
+          style={{ animationDelay: '200ms' }} 
+          className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono py-4 animate-fade-in"
+        >
+          {currentIntroText}
+        </p>
+        
+        <span className="inline-block chip-mint animate-fade-in py-0 my-0 mx-0 px-[9px] mt-2">
+          {currentIntroChip}
+        </span>
       </div>
 
       {/* Only show "Last saved" on top for sections that aren't 0, 1, 2, or 3 */}
