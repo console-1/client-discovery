@@ -18,7 +18,7 @@ const Index = () => {
               style={{ animationDelay: '200ms' }} 
               className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
             >
-              DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
+              Great partnerships begin with honest conversations. This isn't just another form, it's a chance to paint a picture of your business's unique story, the more you reveal, the better we can craft unique solutions to inspire your next chapter.
             </p>
           </div>
         </div>
