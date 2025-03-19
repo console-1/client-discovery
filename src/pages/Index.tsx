@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,24 +9,16 @@ const Index = () => {
   const { header } = PAGE_CONTENT;
   const [currentSection, setCurrentSection] = useState(0);
   const [badgeAnimationComplete, setBadgeAnimationComplete] = useState(false);
-  const [descriptionAnimationComplete, setDescriptionAnimationComplete] = useState(false);
   
   // Get the current section's intro content, or use default if not available
   const currentIntro = FORM_SECTIONS[currentSection]?.intro || PAGE_CONTENT.intro;
   
   const handleSectionChange = (sectionIndex: number) => {
     setCurrentSection(sectionIndex);
-    // Reset animation states when section changes
-    setBadgeAnimationComplete(false);
-    setDescriptionAnimationComplete(false);
   };
   
   const handleBadgeAnimationComplete = () => {
     setBadgeAnimationComplete(true);
-  };
-
-  const handleDescriptionAnimationComplete = () => {
-    setDescriptionAnimationComplete(true);
   };
   
   return (
@@ -43,7 +34,6 @@ const Index = () => {
                 className="inline-block"
                 tag="span"
                 onComplete={handleBadgeAnimationComplete}
-                autoStart={true}
               />
               <span className="animate-blink">_</span>
             </span>
@@ -54,9 +44,7 @@ const Index = () => {
                 speed={20}
                 className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
                 tag="p"
-                delay={300} // Add a slight delay after badge completion
-                onComplete={handleDescriptionAnimationComplete}
-                autoStart={true}
+                delay={100}
               />
             )}
             
@@ -69,7 +57,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className={`flex-grow transition-opacity duration-500 ${descriptionAnimationComplete ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="flex-grow">
           <DiscoveryForm onSectionChange={handleSectionChange} initialSection={currentSection} />
         </div>
       </main>
