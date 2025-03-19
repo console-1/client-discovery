@@ -6,7 +6,12 @@ export const FORM_SECTIONS = [
     id: 'opening',
     title: 'DO MORE CREATIVELY',
     description: '',
-    fields: []
+    fields: [],
+    intro: {
+      badge: 'CLIENT DISCOVERY',
+      title: 'DO MORE CREATIVELY',
+      description: 'Your vision meets our expertise. Complete this quick interactive form to unlock powerful strategies tailored specifically for your business challenges. What could your organization achieve with the right partnership? Let\'s find out together.'
+    }
   },
   {
     id: 'understanding',
@@ -24,7 +29,12 @@ export const FORM_SECTIONS = [
 3. What specific results have clients achieved by working with you? 
 4. How has your target market evolved over the past year?`
       }
-    ]
+    ],
+    intro: {
+      badge: 'UNDERSTAND DEEPLY',
+      title: 'Business Foundation',
+      description: 'Great partnerships begin with understanding. Tell us about your unique approach, client results, and what makes your business special. This helps us identify where we can add the most value.'
+    }
   },
   {
     id: 'growthChallenges',
@@ -41,7 +51,12 @@ export const FORM_SECTIONS = [
 2. Are there specific market segments you're trying to penetrate but finding difficult?
 3. What would meaningful growth look like for you in the next 6-12 months?`
       }
-    ]
+    ],
+    intro: {
+      badge: 'GROW STRATEGICALLY',
+      title: 'Challenges & Opportunities',
+      description: 'Identify your biggest hurdles and untapped opportunities. The more specific you are about your challenges, the more precisely we can craft solutions that drive meaningful growth.'
+    }
   },
   {
     id: 'closing',
@@ -65,6 +80,11 @@ export const FORM_SECTIONS = [
         'Our team will prepare a collaboration proposal',
         'We\'ll schedule a follow-up meeting to discuss next steps'
       ]
+    },
+    intro: {
+      badge: 'PARTNER MEANINGFULLY',
+      title: 'Next Steps Together',
+      description: 'Thank you for sharing your insights. We now have a clearer picture of your business and how we might collaborate to achieve your goals. We\'ll review your information and craft a tailored proposal for our partnership.'
     }
   }
 ];

@@ -12,10 +12,15 @@ interface FormData {
   [key: string]: string;
 }
 
+interface DiscoveryFormProps {
+  onSectionChange?: (sectionIndex: number) => void;
+  initialSection?: number;
+}
+
 const AUTOSAVE_INTERVAL = 30000; // 30 seconds
 
-const DiscoveryForm: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState(0);
+const DiscoveryForm: React.FC<DiscoveryFormProps> = ({ onSectionChange, initialSection = 0 }) => {
+  const [currentSection, setCurrentSection] = useState(initialSection);
   const [formData, setFormData] = useState<FormData>(() => {
     const savedData = localStorage.getItem('discoveryFormData');
     return savedData ? JSON.parse(savedData) : {
@@ -69,24 +74,35 @@ const DiscoveryForm: React.FC = () => {
 
   const nextSection = useCallback(() => {
     if (currentSection < FORM_SECTIONS.length - 1) {
-      setCurrentSection(prev => prev + 1);
+      const newSection = currentSection + 1;
+      setCurrentSection(newSection);
+      if (onSectionChange) {
+        onSectionChange(newSection);
+      }
       saveFormData();
     }
-  }, [currentSection, saveFormData]);
+  }, [currentSection, saveFormData, onSectionChange]);
 
   const prevSection = useCallback(() => {
     if (currentSection > 0) {
-      setCurrentSection(prev => prev - 1);
+      const newSection = currentSection - 1;
+      setCurrentSection(newSection);
+      if (onSectionChange) {
+        onSectionChange(newSection);
+      }
       saveFormData();
     }
-  }, [currentSection, saveFormData]);
+  }, [currentSection, saveFormData, onSectionChange]);
 
   const handleStepClick = useCallback((stepIndex: number) => {
     if (stepIndex <= currentSection) {
       setCurrentSection(stepIndex);
+      if (onSectionChange) {
+        onSectionChange(stepIndex);
+      }
       saveFormData();
     }
-  }, [currentSection, saveFormData]);
+  }, [currentSection, saveFormData, onSectionChange]);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -98,9 +114,15 @@ const DiscoveryForm: React.FC = () => {
         description: "Thank you for sharing your information. We'll be in touch soon."
       });
       setIsSubmitting(false);
-      setCurrentSection(0);
+      
+      // Reset to first section
+      const newSection = 0;
+      setCurrentSection(newSection);
+      if (onSectionChange) {
+        onSectionChange(newSection);
+      }
     }, 1500);
-  }, [toast, saveFormData]);
+  }, [toast, saveFormData, onSectionChange]);
 
   useEffect(() => {
     window.scrollTo({
