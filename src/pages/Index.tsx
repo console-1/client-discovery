@@ -4,6 +4,7 @@ import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { FORM_SECTIONS, PAGE_CONTENT } from '@/lib/content';
+import AnimatedText from '@/components/AnimatedText';
 
 const Index = () => {
   const { header } = PAGE_CONTENT;
@@ -22,8 +23,14 @@ const Index = () => {
       <main className="flex-1 container max-w-6xl mx-auto px-4 pt-20 pb-24 flex flex-col">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <div className="flex flex-col items-center">
-            <span className="inline-block chip-mint chip-mint-cursor mb-4 animate-fade-in">
-              {currentIntro.badge}
+            <span className="inline-block chip-mint mb-4 animate-fade-in">
+              <AnimatedText 
+                text={currentIntro.badge} 
+                speed={60}
+                className="inline-block"
+                tag="span"
+              />
+              <span className="animate-blink">_</span>
             </span>
             <p 
               style={{ animationDelay: '200ms' }} 
