@@ -7,8 +7,7 @@ interface ProgressIndicatorProps {
   currentStep: number;
   className?: string;
   onStepClick?: (stepIndex: number) => void;
-  fadeInDelay?: number;
-  onFadeComplete?: () => void;
+  animationDelay?: number;
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
@@ -16,52 +15,46 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   currentStep,
   className,
   onStepClick,
-  fadeInDelay = 0,
-  onFadeComplete
+  animationDelay = 0
 }) => {
   const progressRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   useEffect(() => {
-    if (progressRef.current) {
-      const progress = ((currentStep) / (totalSteps - 1)) * 100;
-      progressRef.current.style.width = `${progress}%`;
+    // Clear any existing timeout
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
     }
-
-    // Handle fade-in animation with delay
-    if (containerRef.current && fadeInDelay > 0) {
-      containerRef.current.style.opacity = '0';
-      
-      const timer = setTimeout(() => {
-        if (containerRef.current) {
-          containerRef.current.style.transition = 'opacity 0.5s ease-out';
-          containerRef.current.style.opacity = '1';
-          
-          // Trigger onFadeComplete after animation finishes
-          if (onFadeComplete) {
-            const animationTimer = setTimeout(() => {
-              onFadeComplete();
-            }, 500); // Match transition duration
-            
-            return () => clearTimeout(animationTimer);
-          }
-        }
-      }, fadeInDelay);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [currentStep, totalSteps, fadeInDelay, onFadeComplete]);
+    
+    // Set initial state - not showing progress
+    setIsAnimating(false);
+    
+    // Set the timeout to start animation after delay
+    animationTimeoutRef.current = setTimeout(() => {
+      setIsAnimating(true);
+      if (progressRef.current) {
+        const progress = ((currentStep) / (totalSteps - 1)) * 100;
+        progressRef.current.style.width = `${progress}%`;
+      }
+    }, animationDelay);
+    
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, [currentStep, totalSteps, animationDelay]);
 
   const progressWidth = useMemo(() => 
-    `${((currentStep) / (totalSteps - 1)) * 100}%`, 
-    [currentStep, totalSteps]
+    isAnimating ? `${((currentStep) / (totalSteps - 1)) * 100}%` : '0%', 
+    [currentStep, totalSteps, isAnimating]
   );
 
   return (
-    <div 
-      ref={containerRef}
-      className={cn('w-full -mt-2', className)}
-    >
+    <div className={cn('w-full -mt-2 transition-opacity duration-500', 
+                      isAnimating ? 'opacity-100' : 'opacity-0', 
+                      className)}>
       <div className="flex justify-between mb-1">
         <p className="text-xs text-stone-500 dark:text-stone-400 font-mono">
           Progress
@@ -89,10 +82,12 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
             <div
               key={index}
               className={cn(
-                'flex items-center justify-center',
+                'flex items-center justify-center transition-opacity duration-300',
                 index < currentStep ? 'text-mint' : 'text-stone-400',
-                onStepClick ? 'cursor-pointer' : ''
+                onStepClick ? 'cursor-pointer' : '',
+                isAnimating ? 'opacity-100' : 'opacity-0'
               )}
+              style={{ transitionDelay: `${index * 100}ms` }}
               onClick={() => onStepClick && onStepClick(index)}
               role={onStepClick ? "button" : undefined}
               tabIndex={onStepClick ? 0 : undefined}
@@ -119,7 +114,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
          prevProps.totalSteps === nextProps.totalSteps &&
          prevProps.className === nextProps.className &&
          prevProps.onStepClick === nextProps.onStepClick &&
-         prevProps.fadeInDelay === nextProps.fadeInDelay;
+         prevProps.animationDelay === nextProps.animationDelay;
 });
 
 ProgressIndicator.displayName = 'ProgressIndicator';
