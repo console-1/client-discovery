@@ -6,8 +6,6 @@ export const FORM_SECTIONS = [
     id: 'opening',
     title: 'DO MORE CREATIVELY',
     description: '',
-    introText: 'DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.',
-    introChip: 'DO MORE CREATIVELY',
     fields: []
   },
   {
@@ -15,8 +13,6 @@ export const FORM_SECTIONS = [
     title: 'Business Foundation',
     sectionHeader: 'UNDERSTAND DEEPLY',
     description: '',
-    introText: 'alchemedia lab. powers design innovation, happy little accidents crafts sonic experiences, and console-one engineers technical solutions through code.',
-    introChip: 'DESIGN MUSIC CODE',
     fields: [
       {
         name: 'businessFoundation',
@@ -35,8 +31,6 @@ export const FORM_SECTIONS = [
     title: 'Growth, Challenges & Opportunities',
     sectionHeader: 'GROW STRATEGICALLY',
     description: '',
-    introText: 'Operating both independently and as an integrated ecosystem, these specialized studios deliver tailored creative solutions that transform client visions into reality.',
-    introChip: 'DEVELOP MY COMPANY',
     fields: [
       {
         name: 'growthChallenges',
@@ -54,8 +48,6 @@ export const FORM_SECTIONS = [
     title: 'Thank You',
     sectionHeader: 'PARTNER MEANINGFULLY',
     description: "I'm excited about the potential here. Let me summarize what I've heard and our agreed next steps to make sure we're aligned.",
-    introText: 'DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.',
-    introChip: 'DO MORE CREATIVELY',
     fields: [],
     extraContent: {
       type: 'summary',
