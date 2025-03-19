@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,12 +8,17 @@ import AnimatedText from '@/components/AnimatedText';
 const Index = () => {
   const { header } = PAGE_CONTENT;
   const [currentSection, setCurrentSection] = useState(0);
+  const [badgeAnimationComplete, setBadgeAnimationComplete] = useState(false);
   
   // Get the current section's intro content, or use default if not available
   const currentIntro = FORM_SECTIONS[currentSection]?.intro || PAGE_CONTENT.intro;
   
   const handleSectionChange = (sectionIndex: number) => {
     setCurrentSection(sectionIndex);
+  };
+  
+  const handleBadgeAnimationComplete = () => {
+    setBadgeAnimationComplete(true);
   };
   
   return (
@@ -29,12 +33,24 @@ const Index = () => {
                 speed={60}
                 className="inline-block"
                 tag="span"
+                onComplete={handleBadgeAnimationComplete}
               />
               <span className="animate-blink">_</span>
             </span>
+            
+            {badgeAnimationComplete && (
+              <AnimatedText 
+                text={currentIntro.description}
+                speed={20}
+                className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
+                tag="p"
+                delay={100}
+              />
+            )}
+            
+            {/* Keep a hidden version of the text for layout stability */}
             <p 
-              style={{ animationDelay: '200ms' }} 
-              className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
+              className={`text-stone-600 dark:text-stone-300 max-w-2xl font-mono ${badgeAnimationComplete ? 'hidden' : 'opacity-0'}`}
             >
               {currentIntro.description}
             </p>
