@@ -56,7 +56,7 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
         alt="Logo" 
         className={cn(
           "w-full h-full object-contain transition-transform duration-1000",
-          isRotating && "rotate-90"
+          isRotating && "rotate-[360deg]"
         )}
       />
     </div>
