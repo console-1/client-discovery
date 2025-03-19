@@ -19,26 +19,22 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
   };
 
   useEffect(() => {
-    const scheduleNextPulse = () => {
-      // Random time between 5 and 15 seconds
-      const randomDelay = Math.floor(Math.random() * 10000) + 5000;
+    // Start pulsing immediately
+    setIsPulsing(true);
+    
+    // No need for random timing - use consistent 5-second interval
+    const intervalId = setInterval(() => {
+      setIsPulsing(false);
       
-      timeoutRef.current = setTimeout(() => {
+      // Short delay before starting the next pulse
+      setTimeout(() => {
         setIsPulsing(true);
-        
-        // Reset pulse after animation completes
-        setTimeout(() => {
-          setIsPulsing(false);
-          scheduleNextPulse();
-        }, 1000); // 1 second for pulse
-      }, randomDelay);
-    };
-
-    // Start the pulse cycle
-    scheduleNextPulse();
+      }, 200);
+    }, 5000);
 
     // Cleanup
     return () => {
+      clearInterval(intervalId);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
@@ -55,8 +51,8 @@ const Logo: React.FC<LogoProps> = ({ className, size = 'md' }) => {
         src={logoImage}
         alt="Logo" 
         className={cn(
-          "w-full h-full object-contain transition-all duration-300",
-          isPulsing && "filter drop-shadow-[0_0_8px_rgba(21,241,103,0.6)]"
+          "w-full h-full object-contain",
+          isPulsing && "animate-breathing-glow"
         )}
       />
     </div>

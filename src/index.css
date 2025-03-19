@@ -154,6 +154,19 @@
     text-wrap: balance;
   }
 
+  @keyframes breathing-glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 2px rgba(21, 241, 103, 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 8px rgba(21, 241, 103, 0.7));
+    }
+  }
+
+  .animate-breathing-glow {
+    animation: breathing-glow 4s ease-in-out;
+  }
+  
   @keyframes pulse-glow {
     0%, 100% {
       filter: drop-shadow(0 0 2px rgba(21, 241, 103, 0.4));
