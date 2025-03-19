@@ -9,7 +9,6 @@ const Index = () => {
   const { header } = PAGE_CONTENT;
   const [currentSection, setCurrentSection] = useState(0);
   const [badgeAnimationComplete, setBadgeAnimationComplete] = useState(false);
-  const [descriptionAnimationComplete, setDescriptionAnimationComplete] = useState(false);
   
   // Get the current section's intro content, or use default if not available
   const currentIntro = FORM_SECTIONS[currentSection]?.intro || PAGE_CONTENT.intro;
@@ -18,7 +17,6 @@ const Index = () => {
     setCurrentSection(sectionIndex);
     // Reset animation states when section changes
     setBadgeAnimationComplete(false);
-    setDescriptionAnimationComplete(false);
   };
   
   const handleBadgeAnimationComplete = () => {
