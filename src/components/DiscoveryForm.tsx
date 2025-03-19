@@ -4,11 +4,13 @@ import { cn } from '@/lib/utils';
 import ProgressIndicator from './ProgressIndicator';
 import { ChevronRight, ChevronLeft, Send } from 'lucide-react';
 import { FORM_SECTIONS, PAGE_CONTENT } from '@/lib/content';
+
 interface FormData {
   businessFoundation: string;
   growthChallenges: string;
   [key: string]: string;
 }
+
 const AUTOSAVE_INTERVAL = 30000; // 30 seconds
 
 const DiscoveryForm: React.FC = () => {
@@ -26,11 +28,13 @@ const DiscoveryForm: React.FC = () => {
     toast
   } = useToast();
   const autoSaveTimerRef = useRef<number | null>(null);
+
   const saveFormData = useCallback(() => {
     localStorage.setItem('discoveryFormData', JSON.stringify(formData));
     setLastSaved(new Date());
     console.log('Form data autosaved', new Date().toLocaleTimeString());
   }, [formData]);
+
   useEffect(() => {
     if (autoSaveTimerRef.current) {
       window.clearInterval(autoSaveTimerRef.current);
@@ -43,12 +47,14 @@ const DiscoveryForm: React.FC = () => {
       }
     };
   }, [saveFormData]);
+
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       saveFormData();
     }, 2000);
     return () => clearTimeout(debounceTimer);
   }, [formData, saveFormData]);
+
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       name,
@@ -59,24 +65,28 @@ const DiscoveryForm: React.FC = () => {
       [name]: value
     }));
   }, []);
+
   const nextSection = useCallback(() => {
     if (currentSection < FORM_SECTIONS.length - 1) {
       setCurrentSection(prev => prev + 1);
       saveFormData();
     }
   }, [currentSection, saveFormData]);
+
   const prevSection = useCallback(() => {
     if (currentSection > 0) {
       setCurrentSection(prev => prev - 1);
       saveFormData();
     }
   }, [currentSection, saveFormData]);
+
   const handleStepClick = useCallback((stepIndex: number) => {
     if (stepIndex <= currentSection) {
       setCurrentSection(stepIndex);
       saveFormData();
     }
   }, [currentSection, saveFormData]);
+
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -90,6 +100,7 @@ const DiscoveryForm: React.FC = () => {
       setCurrentSection(0);
     }, 1500);
   }, [toast, saveFormData]);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -97,27 +108,26 @@ const DiscoveryForm: React.FC = () => {
     });
   }, [currentSection]);
 
-  // Helper function to render the last saved text
   const renderLastSavedText = () => {
     if (!lastSaved) return null;
     return <div className="text-xs text-stone-500 dark:text-stone-400 font-mono">
         Last saved: {lastSaved.toLocaleTimeString()}
       </div>;
   };
+
   return <div className="max-w-3xl mx-auto">
       <div className="mb-8 text-left">
         <ProgressIndicator totalSteps={FORM_SECTIONS.length} currentStep={currentSection} onStepClick={handleStepClick} />
       </div>
 
-      {/* Only show "Last saved" on top for sections that aren't 0, 1, 2, or 3 */}
       {currentSection !== 0 && currentSection !== 1 && currentSection !== 2 && <div className="text-right mb-2">
           {renderLastSavedText()}
         </div>}
 
       <div className="text-center mt-4">
         {currentSection === 0 ? <div className="flex flex-col items-center my-0">
-            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8">DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
-alchemedia lab. powers design innovation, happy little accidents crafts sonic experiences, and console-one engineers technical solutions through code.
+            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8"><strong>DMC</strong> orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
+<strong>alchemedia lab.</strong> powers design innovation, <strong>happy little accidents</strong> crafts sonic experiences, and <strong>console-one</strong> engineers technical solutions through code.
 
 Operating both independently and as an integrated ecosystem, these specialized studios deliver tailored creative solutions that transform client visions into reality.</p>
             
@@ -145,7 +155,6 @@ Operating both independently and as an integrated ecosystem, these specialized s
               whiteSpace: 'pre-line'
             }} />
                   
-                  {/* Add "Last saved" text below textbox for sections 1 and 2 */}
                   {(currentSection === 1 || currentSection === 2) && <div className="text-right mt-1">
                       {renderLastSavedText()}
                     </div>}
@@ -174,4 +183,5 @@ Operating both independently and as an integrated ecosystem, these specialized s
       </div>
     </div>;
 };
+
 export default DiscoveryForm;
