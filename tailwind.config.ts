@@ -199,6 +199,14 @@ export default {
 					'50%': {
 						transform: 'translateY(-5px)'
 					}
+				},
+				'blink': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
@@ -212,7 +220,8 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out',
 				'slide-out': 'slide-out 0.5s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'blink': 'blink 0.8s step-end infinite'
 			}
 		}
 	},

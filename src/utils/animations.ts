@@ -54,7 +54,10 @@ export const useTypewriter = (text: string, speed: number = 30) => {
       } else {
         if (typewriterRef.current) {
           clearInterval(typewriterRef.current);
-          if (onComplete) onComplete();
+          if (onComplete) {
+            // Add a small delay before calling onComplete to make the transition smoother
+            setTimeout(onComplete, 100);
+          }
         }
       }
     }, speed);
@@ -103,4 +106,23 @@ export const animateElements = async (
   for (let i = 0; i < elements.length; i++) {
     await animateElement(elements[i], animation, duration, i * staggerDelay);
   }
+};
+
+// Helper function to create sequenced animations
+export const createAnimationSequence = (animations: Array<{
+  element: HTMLElement | null,
+  animation: string,
+  duration?: number,
+  delay?: number
+}>) => {
+  return async () => {
+    for (const anim of animations) {
+      await animateElement(
+        anim.element, 
+        anim.animation, 
+        anim.duration || 500, 
+        anim.delay || 0
+      );
+    }
+  };
 };

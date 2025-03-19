@@ -7,22 +7,50 @@ interface ProgressIndicatorProps {
   currentStep: number;
   className?: string;
   onStepClick?: (stepIndex: number) => void;
+  fadeInDelay?: number;
+  onFadeComplete?: () => void;
 }
 
 const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   totalSteps,
   currentStep,
   className,
-  onStepClick
+  onStepClick,
+  fadeInDelay = 0,
+  onFadeComplete
 }) => {
   const progressRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (progressRef.current) {
       const progress = ((currentStep) / (totalSteps - 1)) * 100;
       progressRef.current.style.width = `${progress}%`;
     }
-  }, [currentStep, totalSteps]);
+
+    // Handle fade-in animation with delay
+    if (containerRef.current && fadeInDelay > 0) {
+      containerRef.current.style.opacity = '0';
+      
+      const timer = setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.style.transition = 'opacity 0.5s ease-out';
+          containerRef.current.style.opacity = '1';
+          
+          // Trigger onFadeComplete after animation finishes
+          if (onFadeComplete) {
+            const animationTimer = setTimeout(() => {
+              onFadeComplete();
+            }, 500); // Match transition duration
+            
+            return () => clearTimeout(animationTimer);
+          }
+        }
+      }, fadeInDelay);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStep, totalSteps, fadeInDelay, onFadeComplete]);
 
   const progressWidth = useMemo(() => 
     `${((currentStep) / (totalSteps - 1)) * 100}%`, 
@@ -30,7 +58,10 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   );
 
   return (
-    <div className={cn('w-full -mt-2', className)}>
+    <div 
+      ref={containerRef}
+      className={cn('w-full -mt-2', className)}
+    >
       <div className="flex justify-between mb-1">
         <p className="text-xs text-stone-500 dark:text-stone-400 font-mono">
           Progress
@@ -87,7 +118,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = React.memo(({
   return prevProps.currentStep === nextProps.currentStep &&
          prevProps.totalSteps === nextProps.totalSteps &&
          prevProps.className === nextProps.className &&
-         prevProps.onStepClick === nextProps.onStepClick;
+         prevProps.onStepClick === nextProps.onStepClick &&
+         prevProps.fadeInDelay === nextProps.fadeInDelay;
 });
 
 ProgressIndicator.displayName = 'ProgressIndicator';
