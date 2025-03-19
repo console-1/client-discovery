@@ -127,11 +127,14 @@ const DiscoveryForm: React.FC = () => {
 
       <div className="text-center mt-4">
         {currentSection === 0 ? <div className="flex flex-col items-center my-0">
-            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8"><strong>Design Music Code</strong> orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.
-            <br /><br />
-<strong>alchemedia lab.</strong> powers design innovation, <strong>happy little accidents</strong> crafts sonic experiences, and <strong>console-one</strong> engineers technical solutions through code.
+            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-4"><strong>Design Music Code</strong> orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.</p>
+            
+            <div className="chip-mint mb-4">DO MORE CREATIVELY</div>
+            
+            <p className="text-stone-600 dark:text-stone-300 max-w-2xl mx-auto font-mono mb-8">
+            <strong>alchemedia lab.</strong> powers design innovation, <strong>happy little accidents</strong> crafts sonic experiences, and <strong>console-one</strong> engineers technical solutions through code.
 
-Operating both independently and as an integrated ecosystem, these specialized studios deliver tailored creative solutions that transform client visions into reality.</p>
+            Operating both independently and as an integrated ecosystem, these specialized studios deliver tailored creative solutions that transform client visions into reality.</p>
             
             <div className="animate-float">
               <button onClick={nextSection} className="btn-mint mt-4 flex items-center justify-center gap-2">
