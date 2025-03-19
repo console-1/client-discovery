@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import DiscoveryForm from '@/components/DiscoveryForm';
 import Header from '@/components/Header';
@@ -26,10 +25,6 @@ const Index = () => {
     setBadgeAnimationComplete(true);
   };
 
-  const handleDescriptionAnimationComplete = () => {
-    setDescriptionAnimationComplete(true);
-  };
-  
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-stone-50 to-stone-100 dark:from-stone-800 dark:to-stone-900">
       <Header title={header.title} subtitle={header.subtitle} />
@@ -49,15 +44,9 @@ const Index = () => {
             </span>
             
             {badgeAnimationComplete && (
-              <AnimatedText 
-                text={currentIntro.description}
-                speed={20}
-                className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono"
-                tag="p"
-                delay={300} // Add a slight delay after badge completion
-                onComplete={handleDescriptionAnimationComplete}
-                autoStart={true}
-              />
+              <p className="text-stone-600 dark:text-stone-300 max-w-2xl animate-fade-in font-mono">
+                {currentIntro.description}
+              </p>
             )}
             
             {/* Keep a hidden version of the text for layout stability */}
@@ -69,7 +58,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className={`flex-grow transition-opacity duration-500 ${descriptionAnimationComplete ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`flex-grow transition-opacity duration-500 ${badgeAnimationComplete ? 'opacity-100' : 'opacity-0'}`}>
           <DiscoveryForm onSectionChange={handleSectionChange} initialSection={currentSection} />
         </div>
       </main>
