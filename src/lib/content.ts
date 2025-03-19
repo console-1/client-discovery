@@ -54,8 +54,8 @@ export const FORM_SECTIONS = [
     title: 'Thank You',
     sectionHeader: 'PARTNER MEANINGFULLY',
     description: "I'm excited about the potential here. Let me summarize what I've heard and our agreed next steps to make sure we're aligned.",
-    introText: '',
-    introChip: '',
+    introText: 'DMC orchestrates three pioneering platforms that harness AI, ML, and automation to eliminate tedious business processes.',
+    introChip: 'DO MORE CREATIVELY',
     fields: [],
     extraContent: {
       type: 'summary',
