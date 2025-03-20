@@ -10,9 +10,19 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
+    react({
+      // Configure SWC for better security
+      jsxImportSource: "@emotion/react",
+      plugins: [
+        ["@swc/plugin-emotion", {
+          sourceMap: true,
+          autoLabel: true,
+          labelFormat: "[local]",
+          cssPropOptimization: true,
+        }],
+      ],
+    }),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {

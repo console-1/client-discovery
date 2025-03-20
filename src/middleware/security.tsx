@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { securityHeaders } from '../services/security';
+import { securityHeaders, scriptNonce, styleNonce } from '../services/security';
 
 interface SecurityMiddlewareProps {
   children: React.ReactNode;
@@ -25,10 +25,27 @@ export function SecurityMiddleware({ children }: SecurityMiddlewareProps) {
       }
     });
 
+    // Apply nonces to existing scripts and styles
+    if (typeof document !== 'undefined') {
+      // Add nonces to scripts
+      document.querySelectorAll('script').forEach((script) => {
+        if (!script.hasAttribute('nonce')) {
+          script.setAttribute('nonce', scriptNonce);
+        }
+      });
+
+      // Add nonces to styles
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach((style) => {
+        if (!style.hasAttribute('nonce')) {
+          style.setAttribute('nonce', styleNonce);
+        }
+      });
+    }
+
     // Additional security measures
     if (typeof window !== 'undefined') {
       // Prevent clickjacking
-      if (window.self !== window.top) {
+      if (window.self !== window.top && window.top) {
         window.top.location = window.self.location;
       }
 

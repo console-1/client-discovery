@@ -1,4 +1,5 @@
 import { User } from '@supabase/supabase-js';
+import { generateNonce, getNonceAttr } from '../utils/nonce';
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
@@ -36,6 +37,10 @@ interface AuditLogEntry {
 
 // In-memory audit log (consider using a proper database in production)
 const auditLog: AuditLogEntry[] = [];
+
+// Generate a new nonce for each page load
+export const scriptNonce = generateNonce();
+export const styleNonce = generateNonce();
 
 /**
  * Check if an email is rate limited
@@ -88,7 +93,7 @@ export function logAuditEvent(
     email?: string;
     user?: User | null;
     error?: Error;
-    details?: Record<string, any>;
+    details?: Record<string, unknown>;
   }
 ): void {
   const entry: AuditLogEntry = {
@@ -98,7 +103,7 @@ export function logAuditEvent(
     userId: data?.user?.id,
     ipAddress: window.clientInformation?.platform, // In production, get from server
     userAgent: navigator.userAgent,
-    details: data?.details
+    details: data?.details as Record<string, unknown>
   };
 
   auditLog.push(entry);
@@ -134,10 +139,13 @@ export function clearRateLimit(email: string): void {
 export const securityHeaders = {
   'Content-Security-Policy': 
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' https://cdn.gpteng.co; " +
-    "style-src 'self' 'unsafe-inline'; " +
+    `script-src 'self' 'strict-dynamic' '${getNonceAttr(scriptNonce)}' https://cdn.gpteng.co; ` +
+    `style-src 'self' '${getNonceAttr(styleNonce)}' 'unsafe-inline'; ` +
     "img-src 'self' data: https:; " +
-    "connect-src 'self' https://*.supabase.co",
+    "connect-src 'self' https://*.supabase.co; " +
+    "frame-ancestors 'none'; " +
+    "base-uri 'self'; " +
+    "form-action 'self';",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'X-XSS-Protection': '1; mode=block',
