@@ -99,6 +99,7 @@ const Contact = () => {
                   required
                   className="input-mint w-full"
                   placeholder="Your name"
+                  autoComplete="name"
                 />
               </div>
 
@@ -115,6 +116,7 @@ const Contact = () => {
                   required
                   className="input-mint w-full"
                   placeholder="your.email@example.com"
+                  autoComplete="email"
                 />
               </div>
 
@@ -131,6 +133,7 @@ const Contact = () => {
                   required
                   className="input-mint w-full"
                   placeholder="What is this about?"
+                  autoComplete="off"
                 />
               </div>
 

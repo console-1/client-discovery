@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
 
@@ -14,6 +14,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title, subtitle, className }) => {
   const { user, logout, loading } = useAuth();
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
 
   const handleSignOut = async () => {
     setIsSigningOut(true);
@@ -71,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, className }) => {
                   )}
                 </button>
               </div>
-            ) : (
+            ) : !isLoginPage && (
               <Link
                 to="/login"
                 className="btn-mint text-sm px-4 py-2"
