@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 import { Loader2 } from 'lucide-react';
 
 interface HeaderProps {

@@ -32,7 +32,7 @@ interface AuditLogEntry {
   userId?: string;
   ipAddress?: string;
   userAgent?: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 // In-memory audit log (consider using a proper database in production)
@@ -139,13 +139,14 @@ export function clearRateLimit(email: string): void {
 export const securityHeaders = {
   'Content-Security-Policy': 
     "default-src 'self'; " +
-    `script-src 'self' 'strict-dynamic' '${getNonceAttr(scriptNonce)}' https://cdn.gpteng.co; ` +
-    `style-src 'self' '${getNonceAttr(styleNonce)}' 'unsafe-inline'; ` +
+    `script-src 'self' 'strict-dynamic' '${getNonceAttr(scriptNonce)}' https://cdn.gpteng.co 'unsafe-inline' 'unsafe-eval' https:; ` +
+    `style-src 'self' '${getNonceAttr(styleNonce)}'; ` +
     "img-src 'self' data: https:; " +
-    "connect-src 'self' https://*.supabase.co; " +
+    "connect-src 'self' https://*.supabase.co wss://*.supabase.co; " +
     "frame-ancestors 'none'; " +
     "base-uri 'self'; " +
-    "form-action 'self';",
+    "form-action 'self'; " +
+    "upgrade-insecure-requests;",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'X-XSS-Protection': '1; mode=block',

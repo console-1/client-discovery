@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useEffect, useState, useCallback } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { getCurrentUser, signInWithMagicLink, signOut, getCurrentSession, refreshSession, SESSION_TIMEOUT } from '../services/auth';
+import { getCurrentUser, signInWithMagicLink, signOut, getCurrentSession, refreshSession } from '../services/auth';
 import { useToast } from '@/components/ui/use-toast';
 import { AuthenticationError, AuthErrorCode } from '../services/authErrors';
 
@@ -14,6 +14,7 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export { AuthContext };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -56,17 +57,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setSession(null);
         break;
       case AuthErrorCode.TOKEN_REFRESH_FAILED:
-        // Attempt to get a new session
-        refreshUserSession().catch(() => {
-          setUser(null);
-          setSession(null);
-        });
+        // Clear the session since refresh failed
+        setUser(null);
+        setSession(null);
         break;
     }
   }, [toast]);
 
   // Function to refresh the session
-  const refreshUserSession = async () => {
+  const refreshUserSession = useCallback(async () => {
     try {
       const { session } = await refreshSession();
       if (session) {
@@ -87,35 +86,63 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           description: "Please sign in again to continue.",
           variant: "destructive",
         });
+        // Clear session state on any refresh error
+        setUser(null);
+        setSession(null);
       }
       throw error;
     }
-  };
+  }, [toast, handleAuthError]);
 
   // Check user and session status
-  const checkUser = async () => {
+  const checkUser = useCallback(async () => {
     try {
-      const [currentUser, currentSession] = await Promise.all([
-        getCurrentUser(),
-        getCurrentSession(),
-      ]);
+      // First try to get the current session
+      const currentSession = await getCurrentSession();
       
-      setUser(currentUser);
-      setSession(currentSession);
+      if (!currentSession) {
+        // No session found, clear the state
+        setUser(null);
+        setSession(null);
+        return;
+      }
       
-      if (currentSession) {
+      // Session exists, validate it
+      try {
+        const currentUser = await getCurrentUser();
+        if (!currentUser) {
+          throw new Error('User not found');
+        }
+        
+        setUser(currentUser);
+        setSession(currentSession);
         checkSessionExpiration(currentSession);
+      } catch (userError) {
+        // Invalid session, clear everything
+        setUser(null);
+        setSession(null);
+        if (userError instanceof AuthenticationError) {
+          handleAuthError(userError);
+        }
       }
     } catch (error) {
+      // Handle session retrieval errors
+      setUser(null);
+      setSession(null);
       if (error instanceof AuthenticationError) {
         handleAuthError(error);
       } else {
         console.error('Error checking auth state:', error);
+        toast({
+          title: "Authentication Error",
+          description: "There was a problem verifying your session. Please try signing in again.",
+          variant: "destructive",
+        });
       }
     } finally {
       setLoading(false);
     }
-  };
+  }, [checkSessionExpiration, handleAuthError, setUser, setSession, setLoading, toast]);
 
   useEffect(() => {
     checkUser();
@@ -130,7 +157,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }, 60000); // Check every minute
     
     return () => clearInterval(intervalId);
-  }, [checkSessionExpiration]);
+  }, [checkSessionExpiration, checkUser]);
 
   const signIn = async (email: string, rememberMe: boolean = false) => {
     try {
@@ -172,12 +199,4 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 } 
